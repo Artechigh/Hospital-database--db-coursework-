@@ -47,7 +47,7 @@ model Patient {
   dateOfBirth  DateTime
   user         User?         @relation(fields: [userId], references: [id])
   userId       Int?
-  appointments Appointment[] @relation()
+  appointments Appointment[] 
 }
 
 model Appointment {
