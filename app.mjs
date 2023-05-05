@@ -43,7 +43,39 @@ const sendJson = async (req, res, data) => { // ! don't use JSON.stringify on "d
     res.json(data);
 };
 
+const postReq = async (req, res, func, DatabaseObjectsID, successMsg, errorMsg) => {
+  console.log(`POST request received for: ${req.originalUrl}`);
+
+  const data = req.body // JSON obj
+
+  console.log(`Data received: ${JSON.stringify(data) }`);
+  res.set('Content-Type', 'application/json');
+
+  try {
+    const id = Number(req.body[DatabaseObjectsID]) 
+    const result = await func(id);
+
+    console.log(`Data responded: ${JSON.stringify(result)}`);
+
+    res.status(200).json({
+      message: successMsg,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: errorMsg,
+      error: error
+    });
+  }
+};
+
+
 
 /////////////////////////
 // OPTIONAL
 
+// import {
+// ...
+// } from "../prisma/prismaFunctions.js";
+
+app.get('/test.html', (req, res) => sendFile(req, res, 'test.html'));
