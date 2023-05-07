@@ -31,18 +31,11 @@ app.listen(3000, () => {
 
 // useful
 
- 
-const sendFile = (req, res, fileName) => {  // example: app.get('/test.html', (req, res) => sendFile(req, res, 'test.html'))
-  console.log(`GET request received for: ${req.originalUrl}`);
-  res.sendFile(path.join(__dirname, fileName));
-};
-
 const sendJson = async (req, res, data) => { // ! don't use JSON.stringify on "data"  // example: app.get('/json', (req, res) => sendJson(req,res,{id:2,name:"mom"}))
     console.log(`GET request received for: ${req.originalUrl}`);
     res.set('Content-Type', 'application/json');
     res.json(data);
 };
-
 
 /////////////////////////
 // OPTIONAL
@@ -51,4 +44,12 @@ const sendJson = async (req, res, data) => { // ! don't use JSON.stringify on "d
 // ...
 // } from "../prisma/prismaFunctions.js";
 
-app.get('/test.html', (req, res) => sendFile(req, res, 'test.html'));
+app.get('/getTest.html', (req, res) => {
+  console.log(`GET request received for: ${req.originalUrl}`);
+  res.sendFile(path.join(__dirname, 'getTest.html'));
+});
+
+app.post('/postTest', (req,res) => {
+  console.log(`POST request received for: ${req.originalUrl}`);
+  //res.
+})
