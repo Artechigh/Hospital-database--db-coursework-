@@ -30,7 +30,8 @@
     },
     "scripts": {
         "dev": "webpack serve",
-        "start": "webpack --mode=production"
+        "start": "webpack --mode=production",
+        "tw-watch":"npx tailwindcss -i src/globals.css -o dist/output.css --watch"
     },
     "browserslist": {
         "production": [
