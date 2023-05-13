@@ -31,8 +31,10 @@
     "scripts": {
         "dev": "webpack serve",
         "start": "webpack --mode=production",
-        "tw-watch": "npx tailwindcss -i src/globals.css -o dist/output.css --watch"
+        "tw-watch": "npx tailwindcss -i src/globals.css -o dist/output.css --watch",
+        "server":"node app.mjs"
     },
+    "proxy":"http://localhost:3000/",
     "browserslist": {
         "production": [
             ">0.2%",

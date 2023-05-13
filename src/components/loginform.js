@@ -12,6 +12,11 @@ const Login = () => {
       e.preventDefault();
       setUsername(e.target.username.value)
       setPass(e.target.password.value)
+      // fetch('http://localhost:3000/api/test', {
+      //   mode: 'no-cors'
+      // })
+      // .then(response => response.json())
+      // .then(data => console.log(data));
   };
 
   return (
