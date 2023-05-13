@@ -1,9 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
+
+
 
 const Login = () => {
+
+  const [username, setUsername] = useState('')
+  const [pass, setPass] = useState('')
+
+
+  const handleSubmit = (e) => {
+      e.preventDefault();
+      setUsername(e.target.username.value)
+      setPass(e.target.password.value)
+  };
+
   return (
-    <div className='bg-slate-500'>
-        LoginForm
+    <div className='flex flex-col justify-center items-center'>
+      <div>{username}</div>
+      <div>{pass}</div>
+      <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center space-y-5 '>
+                <input type='text' name='username' placeholder='Логин'
+                  className='bg-slate-200 text-slate-700 border-b-2 border-slate-700 p-2'
+                />
+                <input type='password' name='password' placeholder='Пароль' 
+                  className='bg-slate-200 text-slate-700 border-b-2 border-slate-700 p-2'
+                />
+                <button
+                  className='px-4 py-2 border-solid border-2 border-slate-700 bg-slate-300 rounded-md hover:bg-slate-500'
+                >
+                  Войти
+                </button>
+        </form>
     </div>
   )
 }
