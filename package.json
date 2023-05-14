@@ -1,6 +1,8 @@
 {
     "dependencies": {
         "@prisma/client": "^4.13.0",
+        "axios": "^1.4.0",
+        "cors": "^2.8.5",
         "express": "^4.18.2",
         "path": "^0.12.7",
         "prisma": "^4.13.0",
@@ -32,9 +34,9 @@
         "dev": "webpack serve",
         "start": "webpack --mode=production",
         "tw-watch": "npx tailwindcss -i src/globals.css -o dist/output.css --watch",
-        "server":"node app.mjs"
+        "server": "node app.mjs"
     },
-    "proxy":"http://localhost:3000/",
+    "proxy": "http://localhost:3000/",
     "browserslist": {
         "production": [
             ">0.2%",

@@ -16,20 +16,24 @@
 // ESSENTIALS
 
 import express from 'express'; // "npm install express" required
+const cors = require("cors");
 import path from 'path'; // "npm install path" required
 import { fileURLToPath } from 'url';
 
+
 const app = express();
+var corsOptions = {
+  origin: "http://localhost:9000" //To get erequests from frontend
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
+
+
 
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-app.listen(3000, () => {
-    console.log('Server started on port 3000');
-});
-
-// useful
 
 const sendJson = async (req, res, data) => { // ! don't use JSON.stringify on "data"  // example: app.get('/json', (req, res) => sendJson(req,res,{id:2,name:"mom"}))
     console.log(`GET request received for: ${req.originalUrl}`);
@@ -44,12 +48,18 @@ const sendJson = async (req, res, data) => { // ! don't use JSON.stringify on "d
 // ...
 // } from "../prisma/prismaFunctions.js";
 
-app.get('/getTest.html', (req, res) => {
+app.get('/', (req, res) => {
   console.log(`GET request received for: ${req.originalUrl}`);
-  res.sendFile(path.join(__dirname, 'getTest.html'));
+  res.json({ message: "Welcome to my application." });
 });
 
 app.post('/postTest', (req,res) => {
   console.log(`POST request received for: ${req.originalUrl}`);
   //res.
 })
+
+
+
+app.listen(3000, () => {
+  console.log('Server started on port 3000');
+});

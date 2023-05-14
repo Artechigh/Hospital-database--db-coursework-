@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from "axios";
 
 
 
@@ -12,6 +13,10 @@ const Login = () => {
       e.preventDefault();
       setUsername(e.target.username.value)
       setPass(e.target.password.value)
+      axios.get("https://localhost:3000/", {
+        "Content-type": "application/json"
+      })
+      .then((response) => console.log(response));
       // fetch('http://localhost:3000/api/test', {
       //   mode: 'no-cors'
       // })
