@@ -16,7 +16,7 @@
 // ESSENTIALS
 
 import express from 'express'; // "npm install express" required
-const cors = require("cors");
+import cors from 'cors';
 import path from 'path'; // "npm install path" required
 import { fileURLToPath } from 'url';
 
