@@ -17,8 +17,8 @@ const Login = () => {
        // bodyFormData.append('userName', 'test');
 
        axios.post("http://localhost:3000/api", {
-        email: username,
-        password: pass
+        email: e.target.username.value,
+        password: e.target.password.value
       })
       .then((response) => {
         console.log(response);
