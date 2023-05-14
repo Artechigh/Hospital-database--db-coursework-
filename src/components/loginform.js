@@ -13,7 +13,7 @@ const Login = () => {
       e.preventDefault();
       setUsername(e.target.username.value)
       setPass(e.target.password.value)
-      axios.get("https://localhost:3000/", {
+      axios.get("http://localhost:3000/", {
         "Content-type": "application/json"
       })
       .then((response) => console.log(response));
