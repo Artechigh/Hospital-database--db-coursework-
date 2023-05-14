@@ -56,7 +56,7 @@ app.get('/', (req, res) => {
 
 app.post('/api', (req) => {
   console.log(`POST request received for: ${req.originalUrl}`);
-  console.log(`POST body: ${req.body}`);  //тут не могу принять json
+  console.log(`POST body: ${JSON.stringify(req.body)}`);  //тут не могу принять json
   //res.
 })
 
