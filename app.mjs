@@ -49,7 +49,36 @@ app.get('/getTest.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'getTest.html'));
 });
 
+<<<<<<< HEAD
 app.post('/postTest', (req,res) => {
   console.log(`POST request received for: ${req.originalUrl}`);
   //res.
 })
+=======
+app.post('/api/login', (req, res) => {
+  console.log(`POST request received for: ${req.originalUrl}`);
+  console.log(`POST body: ${JSON.stringify(req.body)}`);
+  // логика проверки с бд
+  // loginform.js
+  res.json({ message: "Вход произведен успешно, перенаправление." });  
+  //res.
+})
+
+// endpoint /api/register
+// 
+// registerform.js
+// 
+// {
+//  name: "Монахов Артем"
+//  email: "exapmle@mail.ru"
+//  password: "example"
+// }
+// заполнение регистрации пользователя в бд
+// ответ - успешно / нет
+
+
+
+app.listen(3000, () => {
+  console.log('Server started on port 3000');
+});
+>>>>>>> 0441447 (login page done)
