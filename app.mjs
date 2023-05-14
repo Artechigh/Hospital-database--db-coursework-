@@ -16,9 +16,10 @@
 // ESSENTIALS
 
 import express from 'express'; // "npm install express" required
-const cors = require("cors");
+import cors from 'cors';
 import path from 'path'; // "npm install path" required
 import { fileURLToPath } from 'url';
+
 
 
 const app = express();
@@ -53,8 +54,9 @@ app.get('/', (req, res) => {
   res.json({ message: "Welcome to my application." });
 });
 
-app.post('/postTest', (req,res) => {
+app.post('/api', (req) => {
   console.log(`POST request received for: ${req.originalUrl}`);
+  console.log(`POST body: ${req.body}`);  //тут не могу принять json
   //res.
 })
 

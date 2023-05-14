@@ -4,6 +4,7 @@ import axios from "axios";
 
 
 const Login = () => {
+  var bodyFormData = new FormData();
 
   const [username, setUsername] = useState('')
   const [pass, setPass] = useState('')
@@ -13,10 +14,39 @@ const Login = () => {
       e.preventDefault();
       setUsername(e.target.username.value)
       setPass(e.target.password.value)
-      axios.get("https://localhost:3000/", {
-        "Content-type": "application/json"
-      })
-      .then((response) => console.log(response));
+
+      // bodyFormData.append('userName', 'test');
+
+      axios.post("http://localhost:3000/api", {
+          email: username,
+          password: pass
+        })
+        .then((response) => {
+          console.log(response);
+        }).catch(function (response) {
+          //handle error
+          console.log(response);
+        });;
+
+      // axios({
+      //   method: "post",
+      //   url: "http://localhost:3000/",
+      //   data: bodyFormData,
+      //   headers: { "Content-Type": "multipart/form-data" },
+      // })
+      //   .then(function (response) {
+      //     //handle success
+      //     console.log(response);
+      //   })
+      //   .catch(function (response) {
+      //     //handle error
+      //     console.log(response);
+      //   });
+
+      // axios.post("http://localhost:3000/api", {
+      //   "Content-type": "application/json"
+      // })
+      // .then((response) => console.log(response));
       // fetch('http://localhost:3000/api/test', {
       //   mode: 'no-cors'
       // })
