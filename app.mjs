@@ -1,16 +1,15 @@
 /////////////////////////
 // ESSENTIALS
 
-import express from 'express'; // "npm install express" required
+import express from 'express'; 
 import cors from 'cors';
-import path from 'path'; // "npm install path" required
+import path from 'path'; 
 import { fileURLToPath } from 'url';
-
 
 
 const app = express();
 var corsOptions = {
-  origin: "http://localhost:9000" //To get erequests from frontend
+  origin: "http://localhost:9000" //To get requests from frontend
 };
 
 app.use(cors(corsOptions));
@@ -18,9 +17,7 @@ app.use(express.json());
 
 
 
-
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
 
 const sendJson = async (req, res, data) => { // ! don't use JSON.stringify on "data"  // example: app.get('/json', (req, res) => sendJson(req,res,{id:2,name:"mom"}))
     console.log(`GET request received for: ${req.originalUrl}`);
@@ -35,6 +32,7 @@ const sendJson = async (req, res, data) => { // ! don't use JSON.stringify on "d
 // ...
 // } from "../prisma/prismaFunctions.js";
 
+
 app.get('/', (req, res) => {
   console.log(`GET request received for: ${req.originalUrl}`);
   res.json({ message: "Welcome to my application." });
@@ -42,10 +40,9 @@ app.get('/', (req, res) => {
 
 app.post('/api', (req) => {
   console.log(`POST request received for: ${req.originalUrl}`);
-  console.log(`POST body: ${JSON.stringify(req.body)}`);  //тут не могу принять json
+  console.log(`POST body: ${JSON.stringify(req.body)}`);
   //res.
 })
-
 
 
 app.listen(3000, () => {
