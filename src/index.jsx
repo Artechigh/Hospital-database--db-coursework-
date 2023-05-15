@@ -3,12 +3,12 @@ import './globals.css'
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Wrapper from './components/wrapper.js'
-import Root from "./routes/root.js";
-import Login from "./components/loginform.js";
-import NotFound from "./components/404.js";
-import SignIn from "./components/registerform.js";
-import Profile from "./components/profile";
+import Wrapper from './components/wrapper.jsx'
+import Root from "./routes/root.jsx";
+import Login from "./components/loginform.jsx";
+import NotFound from "./components/404.jsx";
+import SignIn from "./components/registerform.jsx";
+import Profile from "./components/profile.jsx";
 // import {
 //     createBrowserRouter,
 //     RouterProvider,

@@ -52,7 +52,7 @@ import {
   createPatient,
   createAppointment,
   createPrescription,
-} from "../prisma/prismaFunctions.js";
+} from "./prisma/prismaFunctions.js";
 
 app.get('/', (req, res) => {
   console.log(`GET request received for: ${req.originalUrl}`);
