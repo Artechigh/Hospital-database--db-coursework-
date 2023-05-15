@@ -51,7 +51,7 @@ import {
   createPatient,
   createAppointment,
   createPrescription,
-} from "./prisma/prismaFunctions.js";
+} from "./prisma/prismaFunctions.mjs";
 
 app.get('/', (req, res) => {
   requestNotifier(req)
