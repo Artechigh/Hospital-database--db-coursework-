@@ -12,10 +12,10 @@ export async function createHospital(name, address, phone) {
       phone: phone
     }
   })
-  //return newHospital
+  return newHospital
 }
 
-export async function createUser(name, email, password, birthDate, gender) {
+export async function createUser(name, email, password, birthDate = new Date(), gender = "") {
     const newUser = await prisma.user.create({
       data: {
         name: name,
@@ -25,9 +25,17 @@ export async function createUser(name, email, password, birthDate, gender) {
         gender: gender
       }
     })
-    //return newUser
-  }
-
+    return newUser
+}
+export async function findUserByEmail(email) {
+    const user = await prisma.user.findUnique({
+      where: {
+        email: email
+      }
+    });
+    return user;
+}
+  
 export async function createDoctor(specialty, userId) {
   const newDoctor = await prisma.doctor.create({
     data: {
@@ -37,7 +45,7 @@ export async function createDoctor(specialty, userId) {
       }
     }
   })
-  //return newDoctor
+  return newDoctor
 }
   
 export async function createPatient(dateOfBirth, userId) {
@@ -49,7 +57,7 @@ export async function createPatient(dateOfBirth, userId) {
       }
     }
   })
-  //return newPatient
+  return newPatient
 }
   
 export async function createAppointment(date, reason, doctorId, patientId) {
@@ -65,7 +73,7 @@ export async function createAppointment(date, reason, doctorId, patientId) {
       }
     }
   })
-  //return newAppointment
+  return newAppointment
 }
 
 export async function createPrescription(name, dosage, instructions, doctorId, patientId, appointmentId) {
@@ -81,5 +89,5 @@ export async function createPrescription(name, dosage, instructions, doctorId, p
         }
       }
     })
-    //return newPrescription
+    return newPrescription
 }
