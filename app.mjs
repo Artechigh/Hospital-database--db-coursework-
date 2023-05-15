@@ -30,17 +30,15 @@ var corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
-
-
+/////////////////////////
+// USEFULL
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-
-const sendJson = async (req, res, data) => { // ! don't use JSON.stringify on "data"  // example: app.get('/json', (req, res) => sendJson(req,res,{id:2,name:"mom"}))
-    console.log(`GET request received for: ${req.originalUrl}`);
-    res.set('Content-Type', 'application/json');
-    res.json(data);
-};
+function requestNotifier(req) {
+  console.log(`${req.method} request received for: ${req.originalUrl}`);
+  console.log(`request body: ${JSON.stringify(req.body)}`);
+}
 
 /////////////////////////
 // OPTIONAL
@@ -48,6 +46,7 @@ const sendJson = async (req, res, data) => { // ! don't use JSON.stringify on "d
 import {
   createHospital,
   createUser,
+  findUserByEmail,
   createDoctor,
   createPatient,
   createAppointment,
@@ -55,17 +54,47 @@ import {
 } from "./prisma/prismaFunctions.js";
 
 app.get('/', (req, res) => {
-  console.log(`GET request received for: ${req.originalUrl}`);
+  requestNotifier(req)
   res.json({ message: "Welcome to my application." });
 });
 
 app.post('/api/login', (req, res) => {
-  console.log(`POST request received for: ${req.originalUrl}`);
-  console.log(`POST body: ${JSON.stringify(req.body)}`);
-  // логика проверки с бд
-  // loginform.js
-  res.json({ message: "Вход произведен успешно, перенаправление." });  
-  //res.
+  requestNotifier(req)
+  console.log(`searching existing record with the requested email in database`);
+  findUserByEmail(req.body.email).then(result=>{
+    console.log(`search result: ${JSON.stringify(result)}\n`);
+    if (result==null) {
+      res.json({message: "Записи с данной э. почтой не найдено"})
+    } else {
+      if (req.body.password==result.password) {
+        res.json({ message: "Вход произведен успешно, перенаправление." }); 
+      } else {
+        res.json({ message: "Введен неверный пароль"})
+      }
+    }
+  })
+})
+
+app.post('/api/register', (req,res) => {
+  requestNotifier(req)
+
+  console.log(`searching existing record with the requested email in database`)
+  findUserByEmail(req.body.email).then(result => {
+    console.log(`search result: ${JSON.stringify(result)}\n`);
+    if (result==null) {
+      console.log(`creating new record in database`);
+      createUser(req.body.name, req.body.email, req.body.password).then(result => {
+        console.log(`created result: ${JSON.stringify(result)}\n`);
+        if (result==null) {
+          res.json({isSuccess: false, message: `server error`})
+        } else {
+          res.json({isSuccess: true, message: `registration successful`})
+        }
+      })
+    } else {
+      res.json({isSuccess: false, message: `email is already registered`})
+    }
+  })
 })
 
 // endpoint /api/register
