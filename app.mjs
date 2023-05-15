@@ -45,9 +45,14 @@ const sendJson = async (req, res, data) => { // ! don't use JSON.stringify on "d
 /////////////////////////
 // OPTIONAL
 
-// import {
-// ...
-// } from "../prisma/prismaFunctions.js";
+import {
+  createHospital,
+  createUser,
+  createDoctor,
+  createPatient,
+  createAppointment,
+  createPrescription,
+} from "../prisma/prismaFunctions.js";
 
 app.get('/', (req, res) => {
   console.log(`GET request received for: ${req.originalUrl}`);
