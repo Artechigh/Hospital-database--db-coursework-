@@ -58,6 +58,15 @@ app.get('/', (req, res) => {
   res.json({ message: "Welcome to my application." });
 });
 
+// TODO
+// data endpoint (/data/hospitals)
+// data for all hospitals
+// формат: массив обьектов
+// фалй исходящий: appointment.jsx (ссылку нужно поменять)
+
+
+
+
 app.post('/api/login', (req, res) => {
   requestNotifier(req)
   console.log(`searching existing record with the requested email in database`);
@@ -96,8 +105,6 @@ app.post('/api/register', (req,res) => {
     }
   })
 })
-
-
 
 
 
