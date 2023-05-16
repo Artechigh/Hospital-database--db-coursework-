@@ -4,7 +4,7 @@ import { BiChevronDown } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
 
 // cуну const сюда
-const hospitals = [{"id":1,"name":"H1","address":"street1","phone":"890890"},{"id":2,"name":"H2","address":"street2","phone":"123123"}]
+const hospitalsTemp = [{"id":1,"name":"H1","address":"street1","phone":"890890"},{"id":2,"name":"H2","address":"street2","phone":"123123"}]
 //
 
 export default function Appointment() {
@@ -19,7 +19,7 @@ export default function Appointment() {
     fetch("https://restcountries.com/v2/all?fields=name")
       .then((res) => res.json())
       .then((data) => {
-        setHospitals(data);
+        setHospitals(hospitalsTemp);
       });
   }, []);
 
@@ -58,28 +58,28 @@ export default function Appointment() {
               className="placeholder:text-gray-700 p-2 outline-none"
             />
           </div>
-          {hospitals?.map((country) => (
+          {hospitals?.map((hospital) => (
             <li
-              key={country?.name}
+              key={hospital?.name}
               className={`p-2 text-sm hover:bg-sky-600 hover:text-white
               ${
-                country?.name?.toLowerCase() === selected2?.toLowerCase() &&
+                hospital?.name?.toLowerCase() === selected2?.toLowerCase() &&
                 "bg-sky-600 text-white"
               }
               ${
-                country?.name?.toLowerCase().startsWith(inputValue)
+                hospital?.name?.toLowerCase().startsWith(inputValue)
                   ? "block"
                   : "hidden"
               }`}
               onClick={() => {
-                if (country?.name?.toLowerCase() !== selected.toLowerCase()) {
-                  setSelected(country?.name);
+                if (hospital?.name?.toLowerCase() !== selected.toLowerCase()) {
+                  setSelected(hospital?.name);
                   setOpen(false);
                   setInputValue("");
                 }
               }}
             >
-              {country?.name}
+              {hospital?.name}
             </li>
           ))}
         </ul>
