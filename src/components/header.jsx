@@ -8,9 +8,9 @@ const Header = () => {
             MyHospital
         </div>
         <div className='flex flex-row space-x-5 pl-10'>
-          <div className='hover:underline hover:text-slate-900'>
-            Больницы
-          </div>
+          <Link to={"/appointment"} className='hover:underline hover:text-slate-900'>
+            Запись
+          </Link>
           <div className='hover:underline hover:text-slate-900'>
             Доктора
           </div>

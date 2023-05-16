@@ -97,17 +97,7 @@ app.post('/api/register', (req,res) => {
   })
 })
 
-// endpoint /api/register
-// 
-// registerform.js
-// 
-// {
-//  name: "Монахов Артем"
-//  email: "exapmle@mail.ru"
-//  password: "example"
-// }
-// заполнение регистрации пользователя в бд
-// ответ - успешно / нет
+
 
 
 

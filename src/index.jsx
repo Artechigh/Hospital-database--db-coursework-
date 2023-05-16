@@ -4,7 +4,7 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Wrapper from './components/wrapper.jsx'
-import Root from "./routes/root.jsx";
+import Appointment from "./routes/appointment.jsx";
 import Login from "./components/loginform.jsx";
 import NotFound from "./components/404.jsx";
 import SignIn from "./components/registerform.jsx";
@@ -33,7 +33,7 @@ import Profile from "./components/profile.jsx";
           <Wrapper>
             <Routes>
               <Route path='*' element={<NotFound />} />
-              <Route path='' element={<Root />} />
+              <Route path='appointment' element={<Appointment />} />
               <Route path='login' element={<Login />} />
               <Route path='register' element={<SignIn />} />
               <Route path='profile' element={<Profile />} />
