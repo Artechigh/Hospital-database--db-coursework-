@@ -4,7 +4,7 @@ import { BiChevronDown } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
 
 // cуну const сюда
-const hospitalsTemp = [{"id":1,"name":"H1","address":"street1","phone":"890890"},{"id":2,"name":"H2","address":"street2","phone":"123123"}]
+const hospitalsTemp = [{"name":"H1","address":"street1","phone":"890890","doctors":[]},{"name":"H2","address":"street2","phone":"123123","doctors":[{"specialty":"surgeon","user":{"name":"me","birthDate":"2023-05-15T17:27:58.462Z","gender":""}},{"specialty":"ophthalmologists","user":{"name":"mem","birthDate":"1970-01-01T00:00:00.000Z","gender":""}}]}]
 //
 
 export default function Appointment() {

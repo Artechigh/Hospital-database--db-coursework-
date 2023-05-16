@@ -51,7 +51,7 @@ import {
   createPatient,
   createAppointment,
   createPrescription,
-  getAllHospitals,
+  getAllDoctorsByHospitals,
 } from "./prisma/prismaFunctions.mjs";
 
 app.get('/', (req, res) => {
@@ -68,7 +68,7 @@ app.get('/', (req, res) => {
 app.post('/data/hospitals',(req,res)=>{
   requestNotifier(req)
   console.log(`getting all hospital records from database`);
-  getAllHospitals().then(result=>{
+  getAllDoctorsByHospitals().then(result=>{
     console.log(`search result: ${JSON.stringify(result)}\n`)
     res.json(result)
     console.log(`result responded`);
