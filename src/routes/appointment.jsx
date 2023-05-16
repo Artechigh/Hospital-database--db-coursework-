@@ -3,6 +3,9 @@ import { useId } from 'react';
 import { BiChevronDown } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
 
+// cуну const сюда
+const hospitals = [{"id":1,"name":"H1","address":"street1","phone":"890890"},{"id":2,"name":"H2","address":"street2","phone":"123123"}]
+//
 
 export default function Appointment() {
   const [hospitals, setHospitals] = useState(null);

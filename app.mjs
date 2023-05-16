@@ -51,6 +51,7 @@ import {
   createPatient,
   createAppointment,
   createPrescription,
+  getAllHospitals,
 } from "./prisma/prismaFunctions.mjs";
 
 app.get('/', (req, res) => {
@@ -64,8 +65,15 @@ app.get('/', (req, res) => {
 // формат: массив обьектов
 // фалй исходящий: appointment.jsx (ссылку нужно поменять)
 
-
-
+app.post('/data/hospitals',(req,res)=>{
+  requestNotifier(req)
+  console.log(`getting all hospital records from database`);
+  getAllHospitals().then(result=>{
+    console.log(`search result: ${JSON.stringify(result)}\n`)
+    res.json(result)
+    console.log(`result responded`);
+  })
+})
 
 app.post('/api/login', (req, res) => {
   requestNotifier(req)

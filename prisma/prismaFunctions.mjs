@@ -15,6 +15,12 @@ export async function createHospital(name, address, phone) {
   return newHospital
 }
 
+export async function getAllHospitals(){
+  const resultPackage = await prisma.hospital.findMany({
+  })
+  return resultPackage
+}
+
 export async function createUser(name, email, password, birthDate = new Date(), gender = "") {
     const newUser = await prisma.user.create({
       data: {
