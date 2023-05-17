@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { BiChevronDown } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
+import axios from 'axios';
 
 // cуну const сюда
 const hospitalsTemp = [{"name":"H1","address":"street1","phone":"890890","doctors":[]},{"name":"H2","address":"street2","phone":"123123","doctors":[{"id":1,"specialty":"surgeon"},{"id":2,"specialty":"ophthalmologists"}]}]
@@ -21,13 +22,21 @@ export default function Selector({getValue}) {
   const [specialities, setSpecialities] = useState("")
 
   useEffect(() => {
-    // fetch("http://localhost:3000/data/hospitals")
-    // fetch("https://restcountries.com/v2/all?fields=name")
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     // setHospitals(data);
-        setHospitals(hospitalsTemp);
-      // });
+    // axios.get("http://localhost:3000/data/hospitals")
+    //     .then((response) => {
+    //       console.log("pre-state: ")
+    //       console.log([...doctorsInfo, response.data])
+    //       setDoctorsInfo([...doctorsInfo, response.data]);
+    //       console.log("state: ")
+    //       console.log(doctorsInfo)
+    //     }).catch(function (response) {
+    //     console.log(response)
+    fetch("http://localhost:3000/data/hospitals")
+      .then((res) => res.json())
+      .then((data) => {
+        setHospitals(data);
+        // setHospitals(hospitalsTemp);
+      });
   }, []);
 
 
