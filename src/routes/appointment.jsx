@@ -7,30 +7,26 @@ import axios from 'axios';
 export default function Appointment() {
 
   const [doctors, setDoctors] = useState([])
-  const [doctorsInfo, setDoctorsInfo] = useState([])
 
   const eventhandler = data => {
     setDoctors(data)
-    console.log("Parsed ids:")
-    console.log(doctors)
   }
-  const tempInfo = [{"id":"1","specialty":"surgeon","user":{"name":"Ursella Gun","email":"ur@mail.com","birthDate":"2000-01-01T00:00:00.000Z","gender":"female"}}, {"id":"2","specialty":"ophthalmologists","user":{"name":"Kratos Horacio","email":"kra@mail.com","birthDate":"2000-01-15T17:27:58.462Z","gender":"male"}}]
 
     useEffect(() => {
-      setDoctorsInfo([])
-        axios.post("http://localhost:3000/data/doctor", {
-          id: doctors?.id,
-          specialty: doctors?.specialty
-        })
-        .then((response) => {
-          console.log("pre-state: ")
-          console.log(response?.data)
-          setDoctorsInfo(response?.data);
-          console.log("state: ")
-          console.log(doctorsInfo)
-        }).catch(function (response) {
-          console.log(response)
-        })
+      console.log(doctors)
+        // axios.post("http://localhost:3000/data/doctor", {
+        //   id: doctors?.id,
+        //   specialty: doctors?.specialty
+        // })
+        // .then((response) => {
+        //   console.log("pre-state: ")
+        //   console.log(response?.data)
+        //   setDoctorsInfo(response?.data);
+        //   console.log("state: ")
+        //   console.log(doctorsInfo)
+        // }).catch(function (response) {
+        //   console.log(response)
+        // })
         // setDoctorsInfo(tempInfo)
       }, [doctors])
 
@@ -38,15 +34,26 @@ export default function Appointment() {
       <div className='flex flex-col items-center justify-start relative h-screen'>
         <h1 className='text-xl py-10 font-bold z-10 pt-28'>Выберите необходимый филиал и профиль специалиста для записи</h1>
         <Selector getValue={eventhandler} />
+        {doctors[0] ? <div className='absolute top-56 text-xl font-bold py-10'> Выберите подходящего вам специалиста</div> : <></>}
         <div className='w-[41vw] h-96 absolute top-80 flex flex-col items-center justify-start overflow-scroll overflow-x-hidden'>
-          {doctorsInfo?.map(doct => (
-            <div className='w-full bg-slate-300 flex flex-row items-center justify-between h-24 rounded-md'>
+          {doctors.map(doct => (
+            <div className='w-full bg-slate-300 flex flex-row items-center justify-between h-24 rounded-md mb-3'>
               <div className='flex flex-col items-start justify-center pl-5'>
-                {doct?.user?.name}
+                <div className='text-sm text-slate-600 pb-1'>
+                  {doct?.specialty}
+                </div>
+
+                <div className='text-xl font-bold'>
+                  {doct?.user?.name}
+                </div>
+    
+                <div>
+                  {doct?.user?.email}
+                </div>
               </div>
-              <div className=''>
+              <div className='px-5 py-2 mr-5 border-2 border-slate-800 rounded-md bg-slate-400 hover:bg-slate-300 text-white hover:text-black'>
                 <Link to={`../doctor/${doct?.id}`}>
-                  {doct?.id}
+                  Записаться на прием
                 </Link>
               </div>
             </div>

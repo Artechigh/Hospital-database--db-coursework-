@@ -19,20 +19,15 @@ export default function Selector({getValue}) {
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
 
-  const [specialities, setSpecialities] = useState("")
-
   useEffect(() => {
-    axios.get("http://localhost:3000/data/hospitals")
-        .then((response) => {
-          setHospitals(response.data)
-        }).catch(function (response) {
-        console.log(response)
-    // fetch("http://localhost:3000/data/hospitals")
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     setHospitals(data);
-        // setHospitals(hospitalsTemp);
-      });
+    // axios.get("http://localhost:3000/data/hospitals")
+    //     .then((response) => {
+    //       setHospitals(response.data)
+    //     }).catch(function (response) {
+    //     console.log(response)
+    //   });
+
+      setHospitals(hospitalsTemp)
   }, []);
 
 
@@ -43,14 +38,12 @@ export default function Selector({getValue}) {
   useEffect(() => {
     if (getValue && selected2) {
       const selectedHospital = hospitals?.filter(hosp => hosp?.name == selected)[0]
-      const selectedDoctor = selectedHospital?.doctors?.filter(doct => doct?.specialty == selected2)
-      const names = {id: selectedHospital?.id, 
-                      specialty: selectedDoctor?.specialty
-                    }
-      getValue(names)
+      const selectedDoctors = selectedHospital?.doctors?.filter(doct => doct?.specialty == selected2)
+      getValue(selectedDoctors)
     }
     // TODO забрать имя доктора
   }, [selected2])
+
     return (
       <div className='flex flex-row z-10'>
         <div className="w-72 font-medium mr-10">
