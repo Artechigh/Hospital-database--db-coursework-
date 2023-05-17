@@ -40,6 +40,7 @@ export async function getDoctorDataById(doctorId) {
       id: doctorId
     },
     select: {
+      id: true,
       specialty: true,
       user: {
         select: {

@@ -22,7 +22,7 @@ export default function Appointment() {
         id: id,
       })
       .then((response) => {
-        setDoctorsInfo([...doctorsInfo, ...response.data]);
+        setDoctorsInfo([...doctorsInfo, response.data]);
       }).catch(function (response) {
         console.log(response)
       });
