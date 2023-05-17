@@ -10,7 +10,7 @@ export default function Appointment() {
   const [doctorsInfo, setDoctorsInfo] = useState([])
 
   const eventhandler = data => {
-    setDoctors(data.map(doct => doct?.id))
+    setDoctors(data)
     console.log("Parsed ids:")
     console.log(doctors)
   }
@@ -18,24 +18,21 @@ export default function Appointment() {
 
     useEffect(() => {
       setDoctorsInfo([])
-      console.log()
-      // doctors?.map(id => {
-      //   console.log("fetch for id :", id)
-      //   axios.post("http://localhost:3000/data/doctor", {
-      //     id: id,
-      //   })
-      //   .then((response) => {
-      //     console.log("pre-state: ")
-      //     console.log([...doctorsInfo, response?.data])
-      //     setDoctorsInfo([...doctorsInfo, response?.data]);
-      //     console.log("state: ")
-      //     console.log(doctorsInfo)
-      //   }).catch(function (response) {
-      //     console.log(response)
-      //   });
+        axios.post("http://localhost:3000/data/doctor", {
+          id: doctors?.id,
+          specialty: doctors?.specialty
+        })
+        .then((response) => {
+          console.log("pre-state: ")
+          console.log(response?.data)
+          setDoctorsInfo(response?.data);
+          console.log("state: ")
+          console.log(doctorsInfo)
+        }).catch(function (response) {
+          console.log(response)
+        })
         // setDoctorsInfo(tempInfo)
-      // })
-    }, [doctors])
+      }, [doctors])
 
     return (
       <div className='flex flex-col items-center justify-start relative h-screen'>
