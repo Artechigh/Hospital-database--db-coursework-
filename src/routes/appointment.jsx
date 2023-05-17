@@ -12,35 +12,37 @@ export default function Appointment() {
   const eventhandler = data => {
     setDoctors(data.map(doct => doct?.id))
   }
+  const tempInfo = [{"specialty":"surgeon","user":{"name":"Ursella Gun","email":"ur@mail.com","birthDate":"2000-01-01T00:00:00.000Z","gender":"female"}}, {"specialty":"ophthalmologists","user":{"name":"Kratos Horacio","email":"kra@mail.com","birthDate":"2000-01-15T17:27:58.462Z","gender":"male"}}]
 
     useEffect(() => {
+      // uncomment request
+
       doctors?.map(id => {
       axios.post("http://localhost:3000/data/doctor", {
         id: id,
       })
       .then((response) => {
-        console.log(response.data.specialty);
+        setDoctorsInfo([...doctorsInfo, ...response.data]);
       }).catch(function (response) {
         console.log(response)
       });
-      })
-
-
-    }, [doctors])
+        // setDoctorsInfo(tempInfo)
+      }
+    )}, [doctors])
 
     return (
       <div className='flex flex-col items-center justify-start relative h-screen'>
         <h1 className='text-xl py-10 font-bold z-10 pt-28'>Выберите необходимый филиал и профиль специалиста для записи</h1>
         <Selector getValue={eventhandler} />
         <div className='w-[41vw] h-96 bg-slate-700 absolute top-80 flex flex-col items-center justify-start overflow-scroll overflow-x-hidden'>
-          {doctors?.map(doct => (
+          {doctorsInfo?.map(doct => (
             <div className='w-full bg-slate-300 flex flex-row items-center justify-between h-24 rounded-md'>
               <div className='flex flex-col items-start justify-center pl-5'>
-                {doctorsInfo}
+                {doct?.user?.name}
               </div>
               <div className=''>
                 <Link to={`../doctor/${doct}`}>
-                  {doct}
+                  {doct?.specialty}
                 </Link>
               </div>
             </div>
@@ -48,4 +50,4 @@ export default function Appointment() {
         </div>
     </div>
     );
-  }
+          }
