@@ -15,6 +15,8 @@ export async function createHospital(name, address, phone) {
   return newHospital
 }
 
+
+
 export async function getAllDoctorsByHospitals(){
   const resultPackage = await prisma.hospital.findMany({
     select: {
@@ -83,11 +85,12 @@ export async function createPatient(dateOfBirth, userId) {
   return newPatient
 }
   
-export async function createAppointment(date, reason, doctorId, patientId) {
+export async function createAppointment(date, reason, doctorId, patientId, hospitalId) {
   const newAppointment = await prisma.appointment.create({
     data: {
       date: date,
       reason: reason,
+      hospitalId: hospitalId,
       doctor: {
         connect: { id: doctorId }
       },
