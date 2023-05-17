@@ -16,14 +16,14 @@ export default function Appointment() {
       doctors?.map(id => {
         // change endpoint
 
-      // axios.post("http://localhost:3000/data/doctor", {
-      //   id: id,
-      // })
-      // .then((response) => {
-      //   setDoctorsInfo([...doctorsInfo, response.data.message]);
-      // }).catch(function (response) {
-      //   console.log(responce)
-      // });
+      axios.post("http://localhost:3000/data/doctor", {
+        id: id,
+      })
+      .then((response) => {
+        setDoctorsInfo([...doctorsInfo, response.data.message]);
+      }).catch(function (response) {
+        console.log(responce)
+      });
       })
 
 
