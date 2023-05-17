@@ -4,7 +4,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import axios from 'axios';
 
 // cуну const сюда
-const hospitalsTemp = [{"name":"H1","address":"street1","phone":"890890","doctors":[]},{"name":"H2","address":"street2","phone":"123123","doctors":[{"id":1,"specialty":"surgeon"},{"id":2,"specialty":"ophthalmologists"}]}]
+const hospitalsTemp = [{"id":1 ,"name":"H1","address":"street1","phone":"890890","doctors":[]},{"id":2,"name":"H2","address":"street2","phone":"123123","doctors":[{"id":1,"specialty":"surgeon"},{"id":2,"specialty":"ophthalmologists"}]}]
 //
 
 export default function Selector({getValue}) {
@@ -42,7 +42,11 @@ export default function Selector({getValue}) {
 
   useEffect(() => {
     if (getValue && selected2) {
-      const names = hospitals?.filter(hosp => hosp?.name == selected)[0]?.doctors?.filter(doct => doct?.specialty == selected2)
+      const selectedHospital = hospitals?.filter(hosp => hosp?.name == selected)[0]
+      const selectedDoctor = selectedHospital?.doctors?.filter(doct => doct?.specialty == selected2)
+      const names = {id: selectedHospital?.id, 
+                      specialty: selectedDoctor?.specialty
+                    }
       getValue(names)
     }
     // TODO забрать имя доктора
