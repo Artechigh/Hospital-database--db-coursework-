@@ -38,12 +38,27 @@ import {
   createAppointment,
   createPrescription,
   getAllDoctorsByHospitals,
+  getDoctorDataById,
 } from "./prisma/prismaFunctions.mjs";
 
 app.get('/', (req, res) => {
   requestNotifier(req)
   res.json({ message: "Welcome to my application." });
 });
+
+// getDoctorDataById(1).then(result=>{
+//   console.log(`search result: ${JSON.stringify(result)}\n`)})
+
+app.post('/data/doctor',(req,res)=>{
+  requestNotifier(req)
+  console.log(`searching doctor data by id`);
+  getDoctorDataById(req.body.id).then(result=>{
+    console.log(`search result: ${JSON.stringify(result)}\n`)
+    res.json(result)
+    console.log(`result responded`); 
+  })
+})
+
 
 app.post('/data/hospitals',(req,res)=>{
   requestNotifier(req)

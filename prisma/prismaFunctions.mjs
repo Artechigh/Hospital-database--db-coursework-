@@ -34,6 +34,26 @@ export async function getAllDoctorsByHospitals(){
   return resultPackage
 }
 
+export async function getDoctorDataById(doctorId) {
+  const doctor = await prisma.doctor.findUnique({
+    where: {
+      id: doctorId
+    },
+    select: {
+      specialty: true,
+      user: {
+        select: {
+          name: true,
+          email: true,
+          birthDate: true,
+          gender: true,
+        }
+      }
+    }
+  })
+  return(doctor)
+}
+
 export async function createUser(name, email, password, birthDate = new Date(), gender = "") {
     const newUser = await prisma.user.create({
       data: {
