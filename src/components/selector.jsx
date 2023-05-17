@@ -3,7 +3,7 @@ import { BiChevronDown } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
 
 // cуну const сюда
-const hospitalsTemp = [{"name":"Больница им. Святого Александра И.","address":"ул. Большая Луговая, 17/29","phone":"+7(4852)24-31-31","doctors":[]},{"name":"H2","address":"street2","phone":"123123","doctors":[{"specialty":"Хирург","user":{"name":"me","birthDate":"2023-05-15T17:27:58.462Z","gender":""}},{"specialty":"Офтальмолог","user":{"name":"mem","birthDate":"1970-01-01T00:00:00.000Z","gender":""}}, {"specialty":"Хирург","user":{"name":"me","birthDate":"2023-05-15T17:27:58.462Z","gender":""}}]}]
+const hospitalsTemp = [{"name":"H1","address":"street1","phone":"890890","doctors":[]},{"name":"H2","address":"street2","phone":"123123","doctors":[{"id":1,"specialty":"surgeon"},{"id":2,"specialty":"ophthalmologists"}]}]
 //
 
 export default function Selector({getValue}) {

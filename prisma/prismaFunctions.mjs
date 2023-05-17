@@ -25,14 +25,8 @@ export async function getAllDoctorsByHospitals(){
       phone: true,
       doctors: {
         select: {
+          id: true,
           specialty: true,
-          user: {
-            select: {
-              name: true,
-              birthDate: true,
-              gender: true,
-            }
-          }
         }
       }
     }
