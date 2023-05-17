@@ -24,7 +24,7 @@ export default function Selector({getValue}) {
   useEffect(() => {
     axios.get("http://localhost:3000/data/hospitals")
         .then((response) => {
-          setHospitals(response)
+          setHospitals(response.data)
         }).catch(function (response) {
         console.log(response)
     // fetch("http://localhost:3000/data/hospitals")

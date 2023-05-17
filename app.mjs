@@ -39,15 +39,13 @@ import {
   createPrescription,
   getAllDoctorsByHospitals,
   getDoctorDataById,
+  getAllDoctorsBySpecialtyAndHospitalId,
 } from "./prisma/prismaFunctions.mjs";
 
 app.get('/', (req, res) => {
   requestNotifier(req)
   res.json({ message: "Welcome to my application." });
 });
-
-// getDoctorDataById(1).then(result=>{
-//   console.log(`search result: ${JSON.stringify(result)}\n`)})
 
 app.post('/data/doctor',(req,res)=>{
   requestNotifier(req)
@@ -60,7 +58,7 @@ app.post('/data/doctor',(req,res)=>{
 })
 
 
-app.post('/data/hospitals',(req,res)=>{
+app.get('/data/hospitals',(req,res)=>{
   requestNotifier(req)
   console.log(`getting all hospital records from database`);
   getAllDoctorsByHospitals().then(result=>{
@@ -69,6 +67,18 @@ app.post('/data/hospitals',(req,res)=>{
     console.log(`result responded`);
   })
 })
+
+app.post('/data/getAllDoctorsBySpecialtyAndHospitalId', (req,res)=>{
+  requestNotifier(req)
+  console.log(`searching existing records with the requested specialty and hospitalId in database`)
+  getAllDoctorsBySpecialtyAndHospitalId(req.body.specialty,req.body.hospitalId).then(result=>{
+    console.log(`search result: ${JSON.stringify(result)}\n`)
+    res.json(result)
+    console.log(`result responded`);
+  })
+})
+
+
 
 app.post('/api/login', (req, res) => {
   requestNotifier(req)
