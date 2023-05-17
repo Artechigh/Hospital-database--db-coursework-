@@ -22,19 +22,15 @@ export default function Selector({getValue}) {
   const [specialities, setSpecialities] = useState("")
 
   useEffect(() => {
-    // axios.get("http://localhost:3000/data/hospitals")
-    //     .then((response) => {
-    //       console.log("pre-state: ")
-    //       console.log([...doctorsInfo, response.data])
-    //       setDoctorsInfo([...doctorsInfo, response.data]);
-    //       console.log("state: ")
-    //       console.log(doctorsInfo)
-    //     }).catch(function (response) {
-    //     console.log(response)
-    fetch("http://localhost:3000/data/hospitals")
-      .then((res) => res.json())
-      .then((data) => {
-        setHospitals(data);
+    axios.get("http://localhost:3000/data/hospitals")
+        .then((response) => {
+          setHospitals(response)
+        }).catch(function (response) {
+        console.log(response)
+    // fetch("http://localhost:3000/data/hospitals")
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     setHospitals(data);
         // setHospitals(hospitalsTemp);
       });
   }, []);

@@ -25,8 +25,8 @@ export default function Appointment() {
         })
         .then((response) => {
           console.log("pre-state: ")
-          console.log([...doctorsInfo, response.data])
-          setDoctorsInfo([...doctorsInfo, response.data]);
+          console.log([...doctorsInfo, response?.data])
+          setDoctorsInfo([...doctorsInfo, response?.data]);
           console.log("state: ")
           console.log(doctorsInfo)
         }).catch(function (response) {
@@ -41,7 +41,7 @@ export default function Appointment() {
       <div className='flex flex-col items-center justify-start relative h-screen'>
         <h1 className='text-xl py-10 font-bold z-10 pt-28'>Выберите необходимый филиал и профиль специалиста для записи</h1>
         <Selector getValue={eventhandler} />
-        <div className='w-[41vw] h-96 bg-slate-700 absolute top-80 flex flex-col items-center justify-start overflow-scroll overflow-x-hidden'>
+        <div className='w-[41vw] h-96 absolute top-80 flex flex-col items-center justify-start overflow-scroll overflow-x-hidden'>
           {doctorsInfo?.map(doct => (
             <div className='w-full bg-slate-300 flex flex-row items-center justify-between h-24 rounded-md'>
               <div className='flex flex-col items-start justify-center pl-5'>
