@@ -3,10 +3,10 @@ import { BiChevronDown } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
 
 // cуну const сюда
-const hospitalsTemp = [{"name":"Больница им. Святого Александра И.","address":"ул. Большая Луговая, 17/29","phone":"+7(4852)24-31-31","doctors":[]},{"name":"H2","address":"street2","phone":"123123","doctors":[{"specialty":"Хирург","user":{"name":"me","birthDate":"2023-05-15T17:27:58.462Z","gender":""}},{"specialty":"Офтальмолог","user":{"name":"mem","birthDate":"1970-01-01T00:00:00.000Z","gender":""}}]}]
+const hospitalsTemp = [{"name":"Больница им. Святого Александра И.","address":"ул. Большая Луговая, 17/29","phone":"+7(4852)24-31-31","doctors":[]},{"name":"H2","address":"street2","phone":"123123","doctors":[{"specialty":"Хирург","user":{"name":"me","birthDate":"2023-05-15T17:27:58.462Z","gender":""}},{"specialty":"Офтальмолог","user":{"name":"mem","birthDate":"1970-01-01T00:00:00.000Z","gender":""}}, {"specialty":"Хирург","user":{"name":"me","birthDate":"2023-05-15T17:27:58.462Z","gender":""}}]}]
 //
 
-export default function Selector({getDoctorName}) {
+export default function Selector({getValue}) {
   const [hospitals, setHospitals] = useState(null);
 
   const [inputValue, setInputValue] = useState("");
@@ -20,12 +20,12 @@ export default function Selector({getDoctorName}) {
 
   useEffect(() => {
     // fetch("http://localhost:3000/data/hospitals")
-    fetch("https://restcountries.com/v2/all?fields=name")
-      .then((res) => res.json())
-      .then((data) => {
-        // setHospitals(data);
+    // fetch("https://restcountries.com/v2/all?fields=name")
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     // setHospitals(data);
         setHospitals(hospitalsTemp);
-      });
+      // });
   }, []);
 
 
@@ -34,6 +34,10 @@ export default function Selector({getDoctorName}) {
   }, [selected])
 
   useEffect(() => {
+    if (getValue && selected2) {
+      const names = hospitals?.filter(hosp => hosp?.name == selected)[0]?.doctors?.filter(doct => doct?.specialty == selected2)
+      getValue(names)
+    }
     // TODO забрать имя доктора
   }, [selected2])
     return (
