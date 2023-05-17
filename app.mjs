@@ -1,17 +1,3 @@
-// import packages must be installed with "npm instal 'name' "
-// requested files must be located near this (app.mjs) file
-
-// to add prisma database manager make sure:
-// it's installed "npm instal prisma"
-// prisma project was initialized "npx prisma init" (exists already)
-// database provider is online
-// .env file exists and contains DATABASE_URL="postgresql://johndoe:password@localhost:5432/databaseName?schema=public" with the correct data ("password" can be empty)
-// prisma packages and database provider are updated after changing schema.prisma file ("npx prisma generate", "npx prisma db push")
-//
-
-
-// use "node app.mjs" to run the app
-
 /////////////////////////
 // ESSENTIALS
 
@@ -52,6 +38,7 @@ import {
   createAppointment,
   createPrescription,
   getAllDoctorsByHospitals,
+  getDoctorDataById,
 } from "./prisma/prismaFunctions.mjs";
 
 app.get('/', (req, res) => {
@@ -59,11 +46,19 @@ app.get('/', (req, res) => {
   res.json({ message: "Welcome to my application." });
 });
 
-// TODO
-// data endpoint (/data/hospitals)
-// data for all hospitals
-// формат: массив обьектов
-// фалй исходящий: appointment.jsx (ссылку нужно поменять)
+// getDoctorDataById(1).then(result=>{
+//   console.log(`search result: ${JSON.stringify(result)}\n`)})
+
+app.post('/data/doctor',(req,res)=>{
+  requestNotifier(req)
+  console.log(`searching doctor data by id`);
+  getDoctorDataById(req.body.id).then(result=>{
+    console.log(`search result: ${JSON.stringify(result)}\n`)
+    res.json(result)
+    console.log(`result responded`); 
+  })
+})
+
 
 app.post('/data/hospitals',(req,res)=>{
   requestNotifier(req)
