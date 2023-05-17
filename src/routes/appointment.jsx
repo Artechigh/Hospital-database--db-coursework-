@@ -10,17 +10,16 @@ export default function Appointment() {
   const [doctorsInfo, setDoctorsInfo] = useState([])
 
   const eventhandler = data => {
-    setDoctors(data.map(doct => doct?.id))}
+    setDoctors(data.map(doct => doct?.id))
+  }
 
     useEffect(() => {
       doctors?.map(id => {
-        // change endpoint
-
       axios.post("http://localhost:3000/data/doctor", {
         id: id,
       })
       .then((response) => {
-        setDoctorsInfo([...doctorsInfo, response.data.message]);
+        console.log(response.data.message]);
       }).catch(function (response) {
         console.log(responce)
       });
