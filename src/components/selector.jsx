@@ -18,6 +18,8 @@ export default function Selector({getValue}) {
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
 
+  const [specialities, setSpecialities] = useState("")
+
   useEffect(() => {
     // fetch("http://localhost:3000/data/hospitals")
     // fetch("https://restcountries.com/v2/all?fields=name")
@@ -31,6 +33,8 @@ export default function Selector({getValue}) {
 
   useEffect(() => {
     setSelected2("")
+    const specialities_pre = hospitals?.filter(hosp => hosp?.name == selected)[0]?.doctors?.map((doctor) => doctor?.specialty)
+    setSpecialities(Array.from(new Set(specialities_pre)))
   }, [selected])
 
   useEffect(() => {
@@ -132,35 +136,34 @@ export default function Selector({getValue}) {
               className="placeholder:text-gray-700 bg-slate-400 p-2 outline-none"
             />
           </div>
-          {hospitals?.filter(hosp => hosp?.name == selected)[0]?.doctors?.map((doctor) => (
+          {
+          Array.from( new Set(hospitals?.filter(hosp => hosp?.name == selected)[0]?.doctors?.map((doctor) => doctor?.specialty)))?.map((speciality) => (
             <li
-              key={doctor?.specialty}
+              key={speciality}
               className={`p-2 text-sm hover:bg-sky-600 hover:text-white
               ${
-                doctor?.specialty?.toLowerCase() === selected2?.toLowerCase() &&
+                speciality?.toLowerCase() === selected2?.toLowerCase() &&
                 "bg-sky-600 text-white"
               }
               ${
-                doctor?.specialty?.toLowerCase().indexOf(inputValue2) >= 0
+                speciality?.toLowerCase().indexOf(inputValue2) >= 0
                   ? "block"
                   : "hidden"
               }
               `}
               onClick={() => {
-                if (doctor?.specialty?.toLowerCase() !== selected2?.toLowerCase()) {
-                  setSelected2(doctor?.specialty);
+                if (speciality?.toLowerCase() !== selected2?.toLowerCase()) {
+                  setSelected2(speciality);
                   setOpen2(false);
                 }
               }}
             >
-              {doctor?.specialty}
+              {speciality}
             </li>
           ))}
           {!hospitals?.filter(hosp => hosp?.name == selected)[0]?.doctors[0] ? <li className='p-2 text-sm hover:bg-sky-600 hover:text-white'> Доктор не найден.</li> : <li></li>}
         </ul>
       </div>
-      DoctorName:
-      {hospitals?.filter(hosp => hosp?.name == selected)[0]?.doctors?.filter(doct => doct?.specialty == selected2)[0]?.user?.name}
     </div>
     );
   }
