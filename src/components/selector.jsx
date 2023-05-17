@@ -3,7 +3,7 @@ import { BiChevronDown } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
 
 // cуну const сюда
-const hospitalsTemp = [{"name":"Больница им. Святого Александра И.","address":"ул. Большая Луговая, 17/29","phone":"+7(4852)24-31-31","doctors":[]},{"name":"H2","address":"street2","phone":"123123","doctors":[{"specialty":"surgeon","user":{"name":"me","birthDate":"2023-05-15T17:27:58.462Z","gender":""}},{"specialty":"ophthalmologists","user":{"name":"mem","birthDate":"1970-01-01T00:00:00.000Z","gender":""}}]}]
+const hospitalsTemp = [{"name":"Больница им. Святого Александра И.","address":"ул. Большая Луговая, 17/29","phone":"+7(4852)24-31-31","doctors":[]},{"name":"H2","address":"street2","phone":"123123","doctors":[{"specialty":"Хирург","user":{"name":"me","birthDate":"2023-05-15T17:27:58.462Z","gender":""}},{"specialty":"Офтальмолог","user":{"name":"mem","birthDate":"1970-01-01T00:00:00.000Z","gender":""}}]}]
 //
 
 export default function Selector({getDoctorName}) {
@@ -76,7 +76,7 @@ export default function Selector({getDoctorName}) {
                 "bg-sky-600 text-white"
               }
               ${
-                hospital?.name?.toLowerCase().startsWith(inputValue)
+                hospital?.name?.toLowerCase().indexOf(inputValue) >= 0
                   ? "block"
                   : "hidden"
               }`}
@@ -137,7 +137,7 @@ export default function Selector({getDoctorName}) {
                 "bg-sky-600 text-white"
               }
               ${
-                doctor?.specialty?.toLowerCase().startsWith(inputValue2)
+                doctor?.specialty?.toLowerCase().indexOf(inputValue2) >= 0
                   ? "block"
                   : "hidden"
               }
