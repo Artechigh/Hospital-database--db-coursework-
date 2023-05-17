@@ -21,6 +21,7 @@ export default function Appointment() {
       })
       .then((response) => {
         setDoctorsInfo([...doctorsInfo, response.data.message]);
+        console.log(doctorsInfo)
       }).catch(function (response) {
         console.log(responce)
       });
