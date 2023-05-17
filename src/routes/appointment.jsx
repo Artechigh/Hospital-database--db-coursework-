@@ -19,9 +19,9 @@ export default function Appointment() {
         id: id,
       })
       .then((response) => {
-        console.log(response.data.message]);
+        console.log(response.data.specialty);
       }).catch(function (response) {
-        console.log(responce)
+        console.log(response)
       });
       })
 
