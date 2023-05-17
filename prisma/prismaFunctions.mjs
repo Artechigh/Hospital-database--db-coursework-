@@ -15,11 +15,34 @@ export async function createHospital(name, address, phone) {
   return newHospital
 }
 
+export async function getAllDoctorsBySpecialtyAndHospitalId(specialty,hospitalId){
+  const resultPackage = await prisma.doctor.findMany({
+    select: {
+      specialty: true,
+      user: {
+        select: {
+          name: true,
+          email: true,
+        }
+      }
+    },
+    where: {
+      specialty: specialty,
+      hospitals: {
+        some: {
+          id: hospitalId
+        }
+      }
+    }
+  })
+  return(resultPackage)
+}
 
 
 export async function getAllDoctorsByHospitals(){
   const resultPackage = await prisma.hospital.findMany({
     select: {
+      id: true,
       name: true,
       address: true,
       phone: true,
