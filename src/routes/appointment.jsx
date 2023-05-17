@@ -21,7 +21,6 @@ export default function Appointment() {
       })
       .then((response) => {
         setDoctorsInfo([...doctorsInfo, response.data.message]);
-        console.log(doctorsInfo)
       }).catch(function (response) {
         console.log(responce)
       });
@@ -38,7 +37,7 @@ export default function Appointment() {
           {doctors?.map(doct => (
             <div className='w-full bg-slate-300 flex flex-row items-center justify-between h-24 rounded-md'>
               <div className='flex flex-col items-start justify-center pl-5'>
-                {doct}
+                {doctorsInfo}
               </div>
               <div className=''>
                 <Link to={`../doctor/${doct}`}>
