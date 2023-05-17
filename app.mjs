@@ -57,7 +57,6 @@ app.post('/data/doctor',(req,res)=>{
   })
 })
 
-
 app.get('/data/hospitals',(req,res)=>{
   requestNotifier(req)
   console.log(`getting all hospital records from database`);

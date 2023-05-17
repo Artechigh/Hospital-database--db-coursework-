@@ -50,6 +50,12 @@ export async function getAllDoctorsByHospitals(){
         select: {
           id: true,
           specialty: true,
+          user: {
+            select: {
+              name: true,
+              email: true
+            }
+          }
         }
       }
     }
