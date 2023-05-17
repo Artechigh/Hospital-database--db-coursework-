@@ -24,31 +24,6 @@ const Login = () => {
         setError(responce);
         console.log(responce)
       });;
-
-    // axios({
-    //   method: "post",
-    //   url: "http://localhost:3000/",
-    //   data: bodyFormData,
-    //   headers: { "Content-Type": "multipart/form-data" },
-    // })
-    //   .then(function (response) {
-    //     //handle success
-    //     console.log(response);
-    //   })
-    //   .catch(function (response) {
-    //     //handle error
-    //     console.log(response);
-    //   });
-
-    // axios.post("http://localhost:3000/api", {
-    //   "Content-type": "application/json"
-    // })
-    // .then((response) => console.log(response));
-    // fetch('http://localhost:3000/api/test', {
-    //   mode: 'no-cors'
-    // })
-    // .then(response => response.json())
-    // .then(data => console.log(data));
   };
 
   return (

@@ -3,7 +3,7 @@ import { BiChevronDown } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
 
 // cуну const сюда
-const hospitalsTemp = [{"name":"H1","address":"street1","phone":"890890","doctors":[]},{"name":"H2","address":"street2","phone":"123123","doctors":[{"id":1,"specialty":"surgeon"},{"id":2,"specialty":"ophthalmologists"}]}]
+const hospitalsTemp = [{"name":"H1","address":"street1","phone":"890890","doctors":[]},{"name":"H2","address":"street2","phone":"123123","doctors":[{"id":1,"specialty":"surgeon"},{"id":2,"specialty":"ophthalmologists"}, {"id":3,"specialty":"ophthalmologists"}]}]
 //
 
 export default function Selector({getValue}) {
@@ -43,8 +43,8 @@ export default function Selector({getValue}) {
     // TODO забрать имя доктора
   }, [selected2])
     return (
-      <div className='flex flex-row'>
-        <div className="w-72 font-medium h-80 mr-10">
+      <div className='flex flex-row z-10'>
+        <div className="w-72 font-medium mr-10">
         <div
           onClick={() => setOpen(!open)}
           className={`bg-slate-300 w-full p-2 flex items-center justify-between rounded ${
@@ -105,7 +105,7 @@ export default function Selector({getValue}) {
 
 
 
-      <div className="w-72 font-medium h-80">
+      <div className="w-72 font-medium">
         <div
           onClick={() => setOpen2(!open2)}
           className={`bg-slate-300 w-full p-2 flex items-center justify-between rounded ${

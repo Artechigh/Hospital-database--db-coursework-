@@ -8,7 +8,7 @@ import Appointment from "./routes/appointment.jsx";
 import Login from "./components/loginform.jsx";
 import NotFound from "./components/404.jsx";
 import SignIn from "./components/registerform.jsx";
-import Profile from "./components/profile.jsx";
+import DoctorProfile from "./routes/doctorprofile.jsx";
 // import {
 //     createBrowserRouter,
 //     RouterProvider,
@@ -36,7 +36,7 @@ import Profile from "./components/profile.jsx";
               <Route path='appointment' element={<Appointment />} />
               <Route path='login' element={<Login />} />
               <Route path='register' element={<SignIn />} />
-              <Route path='profile' element={<Profile />} />
+              <Route path='doctor/:id' element={<DoctorProfile />} />
             </Routes>
           </Wrapper>
         </BrowserRouter>

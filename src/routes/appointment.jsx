@@ -1,20 +1,52 @@
 import React, { useState, useEffect } from 'react'
 import Selector from '../components/selector.jsx';
+import {Link} from "react-router-dom";
+import axios from 'axios';
 
 
 export default function Appointment() {
 
-  const [doctors, setDoctors] = useState("")
+  const [doctors, setDoctors] = useState([])
+  const [doctorsInfo, setDoctorsInfo] = useState([])
 
   const eventhandler = data => {
-    setDoctors(data.map(doct => doct?.user?.name))}
+    setDoctors(data.map(doct => doct?.id))}
+
+    useEffect(() => {
+      doctors?.map(id => {
+        // change endpoint
+
+      // axios.post("http://localhost:3000/data/doctor", {
+      //   id: id,
+      // })
+      // .then((response) => {
+      //   setDoctorsInfo([...doctorsInfo, response.data.message]);
+      // }).catch(function (response) {
+      //   console.log(responce)
+      // });
+      })
+
+
+    }, [doctors])
 
     return (
-      <div className='flex flex-col items-center justify-center'>
-        <h1 className='text-xl py-10 font-bold'>Выберите необходимый филиал и профиль специалиста для записи</h1>
-        <Selector getValue={eventhandler}/>
-        {doctors}
-        {/* ЕСТЬ НАБОР ИМЕН ДОКТОРОВ. МОЖНО ЛИ ТУТ ЗАФЕТЧИТЬ ТЕБЕ */}
+      <div className='flex flex-col items-center justify-start relative h-screen'>
+        <h1 className='text-xl py-10 font-bold z-10 pt-28'>Выберите необходимый филиал и профиль специалиста для записи</h1>
+        <Selector getValue={eventhandler} />
+        <div className='w-[41vw] h-96 bg-slate-700 absolute top-80 flex flex-col items-center justify-start overflow-scroll overflow-x-hidden'>
+          {doctors?.map(doct => (
+            <div className='w-full bg-slate-300 flex flex-row items-center justify-between h-24 rounded-md'>
+              <div className='flex flex-col items-start justify-center pl-5'>
+                {doct}
+              </div>
+              <div className=''>
+                <Link to={`../doctor/${doct}`}>
+                  {doct}
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
     </div>
     );
   }
