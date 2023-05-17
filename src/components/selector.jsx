@@ -33,8 +33,6 @@ export default function Selector({getValue}) {
 
   useEffect(() => {
     setSelected2("")
-    const specialities_pre = hospitals?.filter(hosp => hosp?.name == selected)[0]?.doctors?.map((doctor) => doctor?.specialty)
-    setSpecialities(Array.from(new Set(specialities_pre)))
   }, [selected])
 
   useEffect(() => {
