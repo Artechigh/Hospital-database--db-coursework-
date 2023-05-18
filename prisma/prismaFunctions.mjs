@@ -78,7 +78,7 @@ export async function getAllDoctorsByHospitals(){
   return resultPackage
 }
 
-export async function getDoctorDataById(doctorId) {
+export async function getDoctorDataLiteById(doctorId) {
   const doctor = await prisma.doctor.findUnique({
     where: {
       id: doctorId
