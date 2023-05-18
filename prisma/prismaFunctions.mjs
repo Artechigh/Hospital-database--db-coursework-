@@ -41,9 +41,7 @@ export async function getAllDoctorsBySpecialtyAndHospitalId(specialty,hospitalId
 export async function getAllAppointmentsLiteByDoctorId(doctorId){
   const resultPackage = await prisma.appointment.findMany({
     where: {
-      doctor: {
-        id: doctorId
-      }
+      doctorId: doctorId
     },
     select: {
       id: true,
