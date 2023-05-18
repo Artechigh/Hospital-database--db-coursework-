@@ -15,6 +15,10 @@ const MyCalendar = ({dId}) => {
     // вот так выглядит обьект appointment
     // по идее фетч будет тебе post(idDoctor) а ты вернешь список всех, заполненных доктором
 
+    //
+    const AppointmentsTemp = [{"id":1,"date":"2023-05-17T10:00:00.000Z","doctorId":1,"hospitalId":0},{"id":2,"date":"2023-05-18T10:00:00.000Z","doctorId":1,"hospitalId":0}]
+    //
+
     const events = [
       {
         id: 1,
@@ -36,13 +40,26 @@ const MyCalendar = ({dId}) => {
         id: +dId
       })
       .then((response) => {
-        console.log(response)
-      }).catch(function (error) {
-        console.log(error)
-      });
-
-    setMainEvents(events)
+        const apps = []
+        response?.data.forEach(app => {
+            console.log(app)
+            const tempapp = new event(app?.date?.slice(8,10), app?.date?.slice(11,13))
+            apps.push(tempapp)
+          })
+          setMainEvents([...mainEvents, ...apps])
+        }).catch(function (error) {
+          console.log(error)
+        });
+      // const apps = []
+      // AppointmentsTemp.forEach(app => {
+      //       console.log(app)
+      //       const tempapp = new event(app?.date?.slice(8,10), app?.date?.slice(11,13))
+      //       apps.push(tempapp)
+      // })
+      // console.log(apps)
+      // setMainEvents([...mainEvents, ...apps])
     }, [])
+
     
 
 
@@ -70,7 +87,7 @@ const MyCalendar = ({dId}) => {
       this.id = startD + "" + startH
       this.text = "Запись"
       this.start = `2023-05-${startD}T${startH}:00:00`
-      this.end =  `2023-05-${startD}T${startH + 1}:00:00`
+      this.end =  `2023-05-${startD}T${+startH + 1}:00:00`
       this.backColor = "#94a3b8"
       this.idDoctor = dId
       this.startDay = startD
@@ -86,7 +103,6 @@ const MyCalendar = ({dId}) => {
 
     function handleEventCreation() {
       const temp = new event(startDay, startHour, inputValue)
-      console.log(mainEvents)
       setMainEvents([...mainEvents, temp])
     }
 
