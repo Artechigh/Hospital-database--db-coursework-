@@ -41,7 +41,6 @@ model Doctor {
   Hospitals     Hospital[]     @relation("HospitalDoctor")
   Appointments  Appointment[]
   Schedules     Schedule[]
-  Prescriptions Prescription[]
 }
 
 model Schedule {
@@ -57,7 +56,6 @@ model Patient {
   User          User           @relation(fields: [userId], references: [id])
   userId        Int            @unique
   Appointments  Appointment[]
-  Prescriptions Prescription[]
 }
 
 model Appointment {
@@ -78,9 +76,7 @@ model Prescription {
   dosage        String
   instructions  String
   doctorId      Int
-  Doctor        Doctor      @relation(fields: [doctorId], references: [id])
   patientId     Int
-  Patient       Patient     @relation(fields: [patientId], references: [id])
   appointmentId Int
   Appointment   Appointment @relation(fields: [appointmentId], references: [id])
 }
