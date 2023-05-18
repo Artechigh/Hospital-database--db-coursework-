@@ -16,7 +16,7 @@ const DoctorProfile = () => {
           id: +id
         })
         .then((response) => {
-          setProfileInfo(response.data.message);
+          setProfileInfo(response.data);
         }).catch(function (response) {
           console.log(response)
         });
