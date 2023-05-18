@@ -19,13 +19,13 @@ model Hospital {
   name    String   @unique
   address String
   phone   String
-  doctors Doctor[] @relation("HospitalDoctor")
+  Doctors Doctor[] @relation("HospitalDoctor")
 }
 
 model User {
-  id        Int       @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   name      String
-  email     String    @unique
+  email     String   @unique
   password  String
   birthDate DateTime
   gender    String
@@ -34,49 +34,53 @@ model User {
 }
 
 model Doctor {
-  id           Int           @id @default(autoincrement())
-  specialty    String
-  user         User?         @relation(fields: [userId], references: [id])
-  userId       Int?          @unique
-  hospitals    Hospital[]    @relation("HospitalDoctor")
-  appointments Appointment[]
-  schedules Schedule[]
-} 
+  id            Int            @id @default(autoincrement())
+  specialty     String
+  User          User           @relation(fields: [userId], references: [id])
+  userId        Int            @unique
+  Hospitals     Hospital[]     @relation("HospitalDoctor")
+  Appointments  Appointment[]
+  Schedules     Schedule[]
+  Prescriptions Prescription[]
+}
 
 model Schedule {
-  id Int @id @default(autoincrement())
-  workhours String
-  doctorId Int
-  doctor Doctor @relation(fields: [doctorId], references: [id])
+  id         Int    @id @default(autoincrement())
+  workhours  String
+  doctorId   Int
+  Doctor     Doctor @relation(fields: [doctorId], references: [id])
   hospitalId Int
 }
 
 model Patient {
-  id           Int           @id @default(autoincrement())
-  user         User?         @relation(fields: [userId], references: [id])
-  userId       Int?          @unique
-  appointments Appointment[] 
+  id            Int            @id @default(autoincrement())
+  User          User           @relation(fields: [userId], references: [id])
+  userId        Int            @unique
+  Appointments  Appointment[]
+  Prescriptions Prescription[]
 }
 
 model Appointment {
   id            Int            @id @default(autoincrement())
   date          DateTime
-  reason        String
+  diagnosis     String
   hospitalId    Int
   doctorId      Int
-  doctor        Doctor         @relation(fields: [doctorId], references: [id])
+  Doctor        Doctor         @relation(fields: [doctorId], references: [id])
   patientId     Int
-  patient       Patient        @relation(fields: [patientId], references: [id])
-  prescriptions Prescription[]
+  Patient       Patient        @relation(fields: [patientId], references: [id])
+  Prescriptions Prescription[]
 }
 
 model Prescription {
-  id            Int          @id @default(autoincrement())
+  id            Int         @id @default(autoincrement())
   name          String
   dosage        String
   instructions  String
   doctorId      Int
+  Doctor        Doctor      @relation(fields: [doctorId], references: [id])
   patientId     Int
+  Patient       Patient     @relation(fields: [patientId], references: [id])
   appointmentId Int
-  appointment   Appointment @relation(fields: [appointmentId], references: [id])
-} 
+  Appointment   Appointment @relation(fields: [appointmentId], references: [id])
+}
