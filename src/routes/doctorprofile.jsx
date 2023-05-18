@@ -16,12 +16,12 @@ const DoctorProfile = () => {
           id: +id
         })
         .then((response) => {
-          console.log(response.data.message);
+          setProfileInfo(response.data.message);
         }).catch(function (response) {
           console.log(response)
         });
 
-      setProfileInfo(profileTemp)
+      // setProfileInfo(profileTemp)
     }, [])
     
 
