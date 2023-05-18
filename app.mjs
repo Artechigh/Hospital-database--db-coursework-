@@ -38,7 +38,7 @@ function requestNotifier(req) {
 }
 function respondJsonResult(jsonResult) {
   logJsonSeachResult(jsonResult)
-  res.json(josnResult)
+  res.json(jsonResult)
   console.log(`result responded\n`); 
 }
 
