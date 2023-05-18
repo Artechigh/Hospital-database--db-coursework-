@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import {DayPilot, DayPilotCalendar} from "@daypilot/daypilot-lite-react";
 import { BiChevronDown } from "react-icons/bi";
 
-const MyCalendar = (dId) => {
+const MyCalendar = ({dId}) => {
     const [open, setOpen] = useState(false);
     const [selected, setSelected] = useState("");
     const [startDay, setStartDay] = useState("");
@@ -13,7 +13,7 @@ const MyCalendar = (dId) => {
 
     // вот так выглядит обьект appointment
     // по идее фетч будет тебе post(idDoctor) а ты вернешь список всех, заполненных доктором
-    
+
     const events = [
       {
         id: 1,
@@ -28,7 +28,21 @@ const MyCalendar = (dId) => {
       }
     ];
 
-    const [mainEvents, setMainEvents] = useState(events)
+    const [mainEvents, setMainEvents] = useState([])
+
+    useEffect(() => {
+      axios.post("http://localhost:3000/ENDPOINT", {
+        id: dId
+      })
+      .then((response) => {
+        console.log(response)
+      }).catch(function (error) {
+        console.log(error)
+      });
+      
+    setMainEvents(events)
+    }, [])
+    
 
 
     const weeklist = [
@@ -71,6 +85,7 @@ const MyCalendar = (dId) => {
 
     function handleEventCreation() {
       const temp = new event(startDay, startHour, inputValue)
+      console.log(mainEvents)
       setMainEvents([...mainEvents, temp])
     }
 
