@@ -44,11 +44,11 @@ export default function Appointment() {
                 </div>
 
                 <div className='text-xl font-bold'>
-                  {doct?.user?.name}
+                  {doct?.User?.name}
                 </div>
     
                 <div>
-                  {doct?.user?.email}
+                  {doct?.User?.email}
                 </div>
               </div>
               <div className='px-5 py-2 mr-5 border-2 border-slate-800 rounded-md bg-slate-400 hover:bg-slate-300 text-white hover:text-black'>

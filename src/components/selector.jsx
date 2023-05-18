@@ -38,7 +38,7 @@ export default function Selector({getValue}) {
   useEffect(() => {
     if (getValue && selected2) {
       const selectedHospital = hospitals?.filter(hosp => hosp?.name == selected)[0]
-      const selectedDoctors = selectedHospital?.doctors?.filter(doct => doct?.specialty == selected2)
+      const selectedDoctors = selectedHospital?.Doctors?.filter(doct => doct?.specialty == selected2)
       getValue(selectedDoctors)
     }
     // TODO забрать имя доктора
@@ -137,7 +137,7 @@ export default function Selector({getValue}) {
             />
           </div>
           {
-          Array.from( new Set(hospitals?.filter(hosp => hosp?.name == selected)[0]?.doctors?.map((doctor) => doctor?.specialty)))?.map((speciality) => (
+          Array.from( new Set(hospitals?.filter(hosp => hosp?.name == selected)[0]?.Doctors?.map((doctor) => doctor?.specialty)))?.map((speciality) => (
             <li
               key={speciality}
               className={`p-2 text-sm hover:bg-sky-600 hover:text-white
