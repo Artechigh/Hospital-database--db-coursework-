@@ -31,13 +31,13 @@ const DoctorProfile = () => {
     <div>
       <div>
         <div className='text-6xl font-bold py-5'>
-          {profileInfo?.user?.name}
+          {profileInfo?.User?.name}
         </div>
         <div className='text-xl pl-2'>
           {profileInfo?.specialty}
         </div>
         <div className='text-md font-light pt-4 pl-2'>
-          {profileInfo?.user?.email}
+          {profileInfo?.User?.email}
         </div>
       </div>
         <MyCalendar dId={id}/>
