@@ -13,7 +13,7 @@ const DoctorProfile = () => {
 
     useEffect(() => {
       axios.post("http://localhost:3000/data/doctor", {
-          id: id
+          id: +id
         })
         .then((response) => {
           console.log(response.data.message);
