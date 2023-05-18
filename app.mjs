@@ -24,9 +24,11 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 function logJsonSeachResult(jsonResult){
   if (Array.isArray(jsonResult)) {
     console.log("search result:");
+    console.log('[');
     jsonResult.forEach((element) => {
-      console.log(JSON.stringify(element));
+      console.log(`${JSON.stringify(element)},`);
     });
+    console.log(']');
   } else {
     console.log(`search result: ${JSON.stringify(jsonResult)}`);
   }  
@@ -38,7 +40,7 @@ function requestNotifier(req) {
 function respondJsonResult(res,jsonResult) {
   logJsonSeachResult(jsonResult)
   res.json(jsonResult)
-  console.log(`result responded\n`); 
+  console.log(`json responded\n`); 
 }
 
 /////////////////////////
@@ -140,5 +142,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(3000, () => {
-  console.log('Server started on port 3000');
+  console.log('Server started on port 3000\n');
 });
