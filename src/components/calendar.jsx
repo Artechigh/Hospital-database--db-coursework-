@@ -84,10 +84,19 @@ const MyCalendar = ({dId}) => {
 
 
     function event(startD, startH, comment){
+      if (startH < 9){
+        this.start = `2023-05-${startD}T0${startH}:00:00`
+        this.end =  `2023-05-${startD}T0${+startH + 1}:00:00`
+      } else if (startH > 9){
+        this.start = `2023-05-${startD}T${startH}:00:00`
+        this.end =  `2023-05-${startD}T${+startH + 1}:00:00`
+      } else {
+        this.start = `2023-05-${startD}T0${startH}:00:00`
+        this.end =  `2023-05-${startD}T${+startH + 1}:00:00`
+      }
+
       this.id = startD + "" + startH
       this.text = "Запись"
-      this.start = `2023-05-${startD}T${startH}:00:00`
-      this.end =  `2023-05-${startD}T${+startH + 1}:00:00`
       this.backColor = "#94a3b8"
       this.idDoctor = dId
       this.startDay = startD
