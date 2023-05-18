@@ -33,7 +33,7 @@ const MyCalendar = ({dId}) => {
 
     useEffect(() => {
       axios.post("http://localhost:3000/data/doctor/nextAppointments", {
-        id: dId
+        id: +dId
       })
       .then((response) => {
         console.log(response)
