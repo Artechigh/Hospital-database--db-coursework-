@@ -19,7 +19,7 @@ export async function getAllDoctorsBySpecialtyAndHospitalId(specialty,hospitalId
   const resultPackage = await prisma.doctor.findMany({
     select: {
       specialty: true,
-      user: {
+      User: {
         select: {
           name: true,
           email: true,
@@ -28,7 +28,7 @@ export async function getAllDoctorsBySpecialtyAndHospitalId(specialty,hospitalId
     },
     where: {
       specialty: specialty,
-      hospitals: {
+      Hospitals: {
         some: {
           id: hospitalId
         }
@@ -61,11 +61,11 @@ export async function getAllDoctorsByHospitals(){
       name: true,
       address: true,
       phone: true,
-      doctors: {
+      Doctors: {
         select: {
           id: true,
           specialty: true,
-          user: {
+          User: {
             select: {
               name: true,
               email: true
@@ -86,7 +86,7 @@ export async function getDoctorDataLiteById(doctorId) {
     select: {
       id: true,
       specialty: true,
-      user: {
+      User: {
         select: {
           name: true,
           email: true,
@@ -124,7 +124,7 @@ export async function createDoctor(specialty, userId) {
   const newDoctor = await prisma.doctor.create({
     data: {
       specialty: specialty,
-      user: {
+      User: {
         connect: { id: userId }
       }
     }
@@ -136,7 +136,7 @@ export async function createPatient(dateOfBirth, userId) {
   const newPatient = await prisma.patient.create({
     data: {
       dateOfBirth: dateOfBirth,
-      user: {
+      User: {
         connect: { id: userId }
       }
     }
@@ -150,10 +150,10 @@ export async function createAppointment(date, reason, doctorId, patientId, hospi
       date: date,
       reason: reason,
       hospitalId: hospitalId,
-      doctor: {
+      Doctor: {
         connect: { id: doctorId }
       },
-      patient: {
+      Patient: {
         connect: { id: patientId }
       }
     }
@@ -169,7 +169,7 @@ export async function createPrescription(name, dosage, instructions, doctorId, p
         instructions: instructions,
         doctorId: doctorId,
         patientId: patientId,
-        appointment: {
+        Appointment: {
           connect: { id: appointmentId }
         }
       }
