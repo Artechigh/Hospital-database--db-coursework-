@@ -36,7 +36,7 @@ function requestNotifier(req) {
   console.log(`${req.method} request received for: ${req.originalUrl}`);
   console.log(`request body: ${JSON.stringify(req.body)}`);
 }
-function respondJsonResult(jsonResult) {
+function respondJsonResult(res,jsonResult) {
   logJsonSeachResult(jsonResult)
   res.json(jsonResult)
   console.log(`result responded\n`); 
@@ -63,7 +63,7 @@ app.post('/data/doctor',(req,res)=>{
   requestNotifier(req)
   console.log(`searching doctor data by id`);
   getDoctorDataLiteById(req.body.id).then(result=>{
-    respondJsonResult(result)
+    respondJsonResult(res,result)
   })
 })
 
@@ -71,7 +71,7 @@ app.post('/data/doctor/nextAppointments', (req,res)=>{
   requestNotifier(req)
   console.log('searching for All Appointments Lite By Doctor Id');
   getAllAppointmentsLiteByDoctorId(req.body.id).then(result=>{
-    respondJsonResult(result)
+    respondJsonResult(res,result)
   })
 })
 
@@ -79,7 +79,7 @@ app.get('/data/hospitals',(req,res)=>{
   requestNotifier(req)
   console.log(`getting all hospital records from database`);
   getAllDoctorsByHospitals().then(result=>{
-    respondJsonResult(result)
+    respondJsonResult(res,result)
   })
 })
 
@@ -87,7 +87,7 @@ app.post('/data/doctors', (req,res)=>{
   requestNotifier(req)
   console.log(`searching existing records with the requested specialty and hospitalId in database`)
   getAllDoctorsBySpecialtyAndHospitalId(req.body.specialty,req.body.hospitalId).then(result=>{
-    respondJsonResult(result)
+    respondJsonResult(res,result)
   })
 })
 
