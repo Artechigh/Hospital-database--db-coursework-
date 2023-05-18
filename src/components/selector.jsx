@@ -22,12 +22,12 @@ export default function Selector({getValue}) {
   useEffect(() => {
     axios.get("http://localhost:3000/data/hospitals")
         .then((response) => {
-          console.log(response.data)
+          setHospitals(response.data)
         }).catch(function (response) {
         console.log(response)
       });
 
-      setHospitals(hospitalsTemp)
+      // setHospitals(hospitalsTemp)
   }, []);
 
 
