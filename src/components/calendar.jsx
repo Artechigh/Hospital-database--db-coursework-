@@ -110,6 +110,12 @@ const MyCalendar = ({dId}) => {
         setTimesDay(maintimes)
     }, [mainEvents, startDay])
 
+    useEffect(() => {
+      const mainevents_filtered_day = mainEvents.filter(event => event?.date?.slice(8,10) == startDay)
+      const maintimes = mainevents_filtered_day.map(event => event.date?.slice(11,13))
+      setTimesDay(maintimes)
+  }, [])
+
     function handleEventCreation() {
       const temp = new event(startDay, startHour, inputValue)
       setMainEvents([...mainEvents, temp])
