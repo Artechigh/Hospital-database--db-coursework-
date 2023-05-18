@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {DayPilot, DayPilotCalendar} from "@daypilot/daypilot-lite-react";
 import { BiChevronDown } from "react-icons/bi";
+import axios from 'axios';
 
 const MyCalendar = ({dId}) => {
     const [open, setOpen] = useState(false);
@@ -39,7 +40,7 @@ const MyCalendar = ({dId}) => {
       }).catch(function (error) {
         console.log(error)
       });
-      
+
     setMainEvents(events)
     }, [])
     
