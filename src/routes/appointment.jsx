@@ -36,7 +36,7 @@ export default function Appointment() {
         <Selector getValue={eventhandler} />
         {doctors[0] ? <div className='absolute top-56 text-xl font-bold py-10'> Выберите подходящего вам специалиста</div> : <></>}
         <div className='w-[41vw] h-96 absolute top-80 flex flex-col items-center justify-start overflow-scroll overflow-x-hidden'>
-          {doctors.map(doct => (
+          {doctors?.map(doct => (
             <div className='w-full bg-slate-300 flex flex-row items-center justify-between h-24 rounded-md mb-3'>
               <div className='flex flex-col items-start justify-center pl-5'>
                 <div className='text-sm text-slate-600 pb-1'>

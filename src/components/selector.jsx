@@ -161,7 +161,7 @@ export default function Selector({getValue}) {
               {speciality}
             </li>
           ))}
-          {!hospitals?.filter(hosp => hosp?.name == selected)[0]?.doctors[0] ? <li className='p-2 text-sm hover:bg-sky-600 hover:text-white'> Доктор не найден.</li> : <li></li>}
+          {!hospitals?.filter(hosp => hosp?.name == selected)[0]?.Doctors[0] ? <li className='p-2 text-sm hover:bg-sky-600 hover:text-white'> Доктор не найден.</li> : <li></li>}
         </ul>
       </div>
     </div>
