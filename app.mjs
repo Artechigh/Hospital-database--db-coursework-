@@ -21,9 +21,25 @@ app.use(express.json());
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+function logJsonSeachResult(jsonResult){
+  if (Array.isArray(jsonResult)) {
+    console.log("search result:");
+    jsonResult.forEach((element) => {
+      console.log(JSON.stringify(element));
+      console.log(); // Add a new line after each element
+    });
+  } else {
+    console.log(`search result: ${JSON.stringify(jsonResult)}`);
+  }  
+}
 function requestNotifier(req) {
   console.log(`${req.method} request received for: ${req.originalUrl}`);
   console.log(`request body: ${JSON.stringify(req.body)}`);
+}
+function respondJsonResult(jsonResult) {
+  logJsonSeachResult(jsonResult)
+  res.json(josnResult)
+  console.log(`result responded\n`); 
 }
 
 /////////////////////////
@@ -38,23 +54,16 @@ import {
   createAppointment,
   createPrescription,
   getAllDoctorsByHospitals,
-  getDoctorDataById,
+  getDoctorDataLiteById,
   getAllDoctorsBySpecialtyAndHospitalId,
   getAllAppointmentsLiteByDoctorId,
 } from "./prisma/prismaFunctions.mjs";
 
-app.get('/', (req, res) => {
-  requestNotifier(req)
-  res.json({ message: "Welcome to my application." });
-});
-
 app.post('/data/doctor',(req,res)=>{
   requestNotifier(req)
   console.log(`searching doctor data by id`);
-  getDoctorDataById(req.body.id).then(result=>{
-    console.log(`search result: ${JSON.stringify(result)}\n`)
-    res.json(result)
-    console.log(`result responded`); 
+  getDoctorDataLiteById(req.body.id).then(result=>{
+    respondJsonResult(result)
   })
 })
 
@@ -62,9 +71,7 @@ app.post('/data/doctor/nextAppointments', (req,res)=>{
   requestNotifier(req)
   console.log('searching for All Appointments Lite By Doctor Id');
   getAllAppointmentsLiteByDoctorId(req.body.id).then(result=>{
-    console.log(`search result: ${JSON.stringify(result)}\n`)
-    res.json(result)
-    console.log(`result responded`); 
+    respondJsonResult(result)
   })
 })
 
@@ -72,23 +79,19 @@ app.get('/data/hospitals',(req,res)=>{
   requestNotifier(req)
   console.log(`getting all hospital records from database`);
   getAllDoctorsByHospitals().then(result=>{
-    console.log(`search result: ${JSON.stringify(result)}\n`)
-    res.json(result)
-    console.log(`result responded`);
+    respondJsonResult(result)
   })
 })
 
-app.post('/data/getAllDoctorsBySpecialtyAndHospitalId', (req,res)=>{
+app.post('/data/doctors', (req,res)=>{
   requestNotifier(req)
   console.log(`searching existing records with the requested specialty and hospitalId in database`)
   getAllDoctorsBySpecialtyAndHospitalId(req.body.specialty,req.body.hospitalId).then(result=>{
-    console.log(`search result: ${JSON.stringify(result)}\n`)
-    res.json(result)
-    console.log(`result responded`);
+    respondJsonResult(result)
   })
 })
 
-
+//////////////////////////////////////////////////////////////////////////
 
 app.post('/api/login', (req, res) => {
   requestNotifier(req)
@@ -130,6 +133,12 @@ app.post('/api/register', (req,res) => {
 })
 
 
+
+
+app.get('/', (req, res) => {
+  requestNotifier(req)
+  res.json({ message: "Welcome to my application." });
+});
 
 app.listen(3000, () => {
   console.log('Server started on port 3000');
