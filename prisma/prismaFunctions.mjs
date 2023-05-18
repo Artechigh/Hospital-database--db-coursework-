@@ -50,6 +50,7 @@ export async function getAllAppointmentsLiteByDoctorId(doctorId){
       hospitalId: true
     }
   })
+  return resultPackage
 }
 
 
