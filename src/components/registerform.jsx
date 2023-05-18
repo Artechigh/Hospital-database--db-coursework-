@@ -20,8 +20,8 @@ const SignIn = () => {
         .then((response) => {
           setResponce(response.data.message);
         }).catch(function (response) {
-          setError(responce);
-          console.log(responce)
+          setError(response);
+          console.log(response)
         });
       }
   };

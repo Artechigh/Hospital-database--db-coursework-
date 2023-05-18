@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import MyCalendar from '../components/calendar.jsx';
+import axios from 'axios';
 
 const profileTemp = {"id":1,"specialty":"Хирург-кардиолог","user":{"name":"Ursella Gun","email":"ur@mail.com"}}
 
@@ -11,7 +12,14 @@ const DoctorProfile = () => {
     const [profileInfo, setProfileInfo] = useState({})
 
     useEffect(() => {
-      // фетчим данные
+      axios.post("http://localhost:3000/data/doctor", {
+          id: id
+        })
+        .then((response) => {
+          console.log(response.data.message);
+        }).catch(function (response) {
+          console.log(response)
+        });
 
       setProfileInfo(profileTemp)
     }, [])

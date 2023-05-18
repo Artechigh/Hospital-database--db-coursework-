@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Selector from '../components/selector.jsx';
 import {Link} from "react-router-dom";
-import axios from 'axios';
+
 
 
 export default function Appointment() {
@@ -11,24 +11,6 @@ export default function Appointment() {
   const eventhandler = data => {
     setDoctors(data)
   }
-
-    // useEffect(() => {
-    //   console.log(doctors)
-    //     // axios.post("http://localhost:3000/data/doctor", {
-    //     //   id: doctors?.id,
-    //     //   specialty: doctors?.specialty
-    //     // })
-    //     // .then((response) => {
-    //     //   console.log("pre-state: ")
-    //     //   console.log(response?.data)
-    //     //   setDoctorsInfo(response?.data);
-    //     //   console.log("state: ")
-    //     //   console.log(doctorsInfo)
-    //     // }).catch(function (response) {
-    //     //   console.log(response)
-    //     // })
-    //     // setDoctorsInfo(tempInfo)
-    //   }, [doctors])
 
     return (
       <div className='flex flex-col items-center justify-start relative h-screen'>
