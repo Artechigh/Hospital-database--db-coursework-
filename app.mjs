@@ -26,7 +26,6 @@ function logJsonSeachResult(jsonResult){
     console.log("search result:");
     jsonResult.forEach((element) => {
       console.log(JSON.stringify(element));
-      console.log(); // Add a new line after each element
     });
   } else {
     console.log(`search result: ${JSON.stringify(jsonResult)}`);
