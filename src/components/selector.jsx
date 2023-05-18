@@ -6,6 +6,9 @@ import axios from 'axios';
 // cуну Новую const сюда
 const hospitalsTemp = [{"id":1,"name":"H1","address":"street1","phone":"890890","doctors":[]},{"id":2,"name":"H2","address":"street2","phone":"123123","doctors":[{"id":1,"specialty":"surgeon","user":{"name":"Ursella Gun","email":"ur@mail.com"}},{"id":2,"specialty":"ophthalmologists","user":{"name":"Kratos Horacio","email":"kra@mail.com"}},{"id":4,"specialty":"surgeon","user":{"name":"ii","email":"ii"}}]}]
 //
+//
+const AppointmentsTemp = [{"id":1,"date":"1970-01-01T11:00:00.000Z","doctorId":1,"hospitalId":0},{"id":2,"date":"1970-01-01T12:00:00.000Z","doctorId":1,"hospitalId":0}]
+//
 
 export default function Selector({getValue}) {
   const [hospitals, setHospitals] = useState(null);
