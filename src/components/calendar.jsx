@@ -10,6 +10,10 @@ const MyCalendar = (dId) => {
     const [timesDay, setTimesDay] = useState([])
     const [inputValue, setInputValue] = useState("")
 
+
+    // вот так выглядит обьект appointment
+    // по идее фетч будет тебе post(idDoctor) а ты вернешь список всех, заполненных доктором
+    
     const events = [
       {
         id: 1,
@@ -60,25 +64,10 @@ const MyCalendar = (dId) => {
     }
 
       useEffect(() => {
-          const events_filtered_day = events.filter(event => event.startDay == startDay)
-          const times = events_filtered_day.map(event => event.startHour)
-          console.log(times)
-          setTimesDay(times)
-      }, [startDay])
-
-    //   useEffect(() => {
-    //     if (startDay && startHour){
-    //       console.log(startDay, startHour)
-    //       console.log(events)
-    //       const temp = new event(startDay, startHour)
-    //       console.log(temp)
-    //       events.push(new event(startDay, startHour))
-    //       const events_filtered_day = events.filter(event => event.startDay == startDay)
-    //       const times = events_filtered_day.map(event => event.startHour)
-    //       setTimesDay(times)
-    //       setMainEvents(events)
-    //     }
-    // }, [startHour])
+        const mainevents_filtered_day = mainEvents.filter(event => event.startDay == startDay)
+        const maintimes = mainevents_filtered_day.map(event => event.startHour)
+        setTimesDay(maintimes)
+    }, [mainEvents, startDay])
 
     function handleEventCreation() {
       const temp = new event(startDay, startHour, inputValue)
