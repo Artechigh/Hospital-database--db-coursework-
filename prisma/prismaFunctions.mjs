@@ -38,6 +38,22 @@ export async function getAllDoctorsBySpecialtyAndHospitalId(specialty,hospitalId
   return(resultPackage)
 }
 
+export async function getAllAppointmentsLiteByDoctorId(doctorId){
+  const resultPackage = await prisma.appointment.findMany({
+    where: {
+      doctor: {
+        id: doctorId
+      }
+    },
+    select: {
+      id: true,
+      date: true,
+      doctorId: true,
+      hospitalId: true
+    }
+  })
+}
+
 
 export async function getAllDoctorsByHospitals(){
   const resultPackage = await prisma.hospital.findMany({

@@ -31,7 +31,7 @@ const MyCalendar = ({dId}) => {
     const [mainEvents, setMainEvents] = useState([])
 
     useEffect(() => {
-      axios.post("http://localhost:3000/ENDPOINT", {
+      axios.post("http://localhost:3000/data/doctor/nextAppointments", {
         id: dId
       })
       .then((response) => {

@@ -40,6 +40,7 @@ import {
   getAllDoctorsByHospitals,
   getDoctorDataById,
   getAllDoctorsBySpecialtyAndHospitalId,
+  getAllAppointmentsLiteByDoctorId,
 } from "./prisma/prismaFunctions.mjs";
 
 app.get('/', (req, res) => {
@@ -51,6 +52,16 @@ app.post('/data/doctor',(req,res)=>{
   requestNotifier(req)
   console.log(`searching doctor data by id`);
   getDoctorDataById(req.body.id).then(result=>{
+    console.log(`search result: ${JSON.stringify(result)}\n`)
+    res.json(result)
+    console.log(`result responded`); 
+  })
+})
+
+app.post('/data/doctor/nextAppointments', (req,res)=>{
+  requestNotifier(req)
+  console.log('searching for All Appointments Lite By Doctor Id');
+  getAllAppointmentsLiteByDoctorId(req.body.id).then(result=>{
     console.log(`search result: ${JSON.stringify(result)}\n`)
     res.json(result)
     console.log(`result responded`); 
