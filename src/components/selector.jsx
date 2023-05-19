@@ -7,7 +7,7 @@ import axios from 'axios';
 const hospitalsTemp = [{"id":1,"name":"H1","address":"street1","phone":"890890","doctors":[]},{"id":2,"name":"H2","address":"street2","phone":"123123","doctors":[{"id":1,"specialty":"surgeon","user":{"name":"Ursella Gun","email":"ur@mail.com"}},{"id":2,"specialty":"ophthalmologists","user":{"name":"Kratos Horacio","email":"kra@mail.com"}},{"id":4,"specialty":"surgeon","user":{"name":"ii","email":"ii"}}]}]
 
 
-export default function Selector({getValue}) {
+export default function Selector({getValue, getHId}) {
   const [hospitals, setHospitals] = useState(null);
 
   const [inputValue, setInputValue] = useState("");
@@ -40,6 +40,7 @@ export default function Selector({getValue}) {
       const selectedHospital = hospitals?.filter(hosp => hosp?.name == selected)[0]
       const selectedDoctors = selectedHospital?.Doctors?.filter(doct => doct?.specialty == selected2)
       getValue(selectedDoctors)
+      getHId(selectedHospital?.id)
     }
     // TODO забрать имя доктора
   }, [selected2])

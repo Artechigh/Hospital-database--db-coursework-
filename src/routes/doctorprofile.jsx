@@ -7,7 +7,7 @@ const profileTemp = {"id":1,"specialty":"Хирург-кардиолог","user"
 
 
 const DoctorProfile = () => {
-    const { id } = useParams();
+    const { id, hId } = useParams();
 
     const [profileInfo, setProfileInfo] = useState({})
 

@@ -36,7 +36,7 @@ import DoctorProfile from "./routes/doctorprofile.jsx";
               <Route path='appointment' element={<Appointment />} />
               <Route path='login' element={<Login />} />
               <Route path='register' element={<SignIn />} />
-              <Route path='doctor/:id' element={<DoctorProfile />} />
+              <Route path='doctor/:id/:hId' element={<DoctorProfile />} />
             </Routes>
           </Wrapper>
         </BrowserRouter>
