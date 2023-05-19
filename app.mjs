@@ -87,9 +87,6 @@ app.post('/data/doctor/hospitalsAndAppointments', (req,res)=>{
   })
 })
 
-getDoctorsHospitalsAndAppointments(1).then(result=>{
-  console.log(`/hospitalsAndAppointments: ${JSON.stringify(result)}`);
-})
 
 
 app.post('/data/patient/appointments', (req,res)=>{
@@ -99,11 +96,6 @@ app.post('/data/patient/appointments', (req,res)=>{
     respondJsonResult(res,result)
   })
 })
-
-getPatientsAppointments(1).then(result=>{
-  console.log(`/appointments: ${JSON.stringify(result)}`);
-})
-
 
 
 app.post('/data/doctor/nextAppointments', (req,res)=>{

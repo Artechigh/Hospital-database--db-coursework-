@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
 
+const tempApp = {"Appointments":[{"id":1,"date":"2023-05-18T10:00:00.000Z","diagnosis":"","hospitalId":1,"doctorId":1,"patientId":1},{"id":5,"date":"2023-05-15T10:00:00.000Z","diagnosis":null,"hospitalId":1,"doctorId":1,"patientId":1},{"id":7,"date":"2023-05-16T10:00:00.000Z","diagnosis":null,"hospitalId":1,"doctorId":1,"patientId":1}]}
+const tempHospApp = {"Hospitals":[{"name":"Первая городская больница"}],"Appointments":[{"id":1,"date":"2023-05-18T10:00:00.000Z","diagnosis":"","hospitalId":1,"doctorId":1,"patientId":1},{"id":2,"date":"2023-05-18T11:00:00.000Z","diagnosis":"","hospitalId":1,"doctorId":1,"patientId":2},{"id":5,"date":"2023-05-15T10:00:00.000Z","diagnosis":null,"hospitalId":1,"doctorId":1,"patientId":1},{"id":6,"date":"2023-05-16T11:00:00.000Z","diagnosis":null,"hospitalId":1,"doctorId":1,"patientId":2},{"id":7,"date":"2023-05-16T10:00:00.000Z","diagnosis":null,"hospitalId":1,"doctorId":1,"patientId":1}]}
+
 
 const ProfilePage = () => {
     const user = sessionStorage.getItem('user')
