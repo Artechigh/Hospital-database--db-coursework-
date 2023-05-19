@@ -64,10 +64,10 @@ const ProfilePage = () => {
                 Электронная почта: {JSON.parse(user)?.email}
             </div>
             <div className='text-lg'>
-                Дата рождения: {JSON.parse(user)?.birthDate}
+                Дата рождения: {JSON.parse(user)?.birthDate.substring(0, 10)}
             </div>
             <div className='text-lg'>
-                Пол: {JSON.parse(user)?.gender.substring(0, 10)}
+                Пол: {JSON.parse(user)?.gender}
             </div>
         </div>
         {isDoctor === "doctor" ?
