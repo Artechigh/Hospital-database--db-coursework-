@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import { BiChevronDown } from "react-icons/bi";
 import axios from 'axios'
 
-const tempApp = {"Appointments":[{"date":"2023-05-18T10:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Doctor":{"User":{"name":"Петров Степан Викторович"}}},{"date":"2023-05-15T10:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Doctor":{"User":{"name":"Петров Степан Викторович"}}},{"date":"2023-05-16T10:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Doctor":{"User":{"name":"Петров Степан Викторович"}}}]}
+const tempApp = {"Appointments":[{"date":"2023-05-10T10:00:00.000Z","diagnosis":"астигматизм","Hospital":{"name":"Первая городская больница"},"Doctor":{"User":{"name":"Ермолова Милана Антоновна"}},"Prescriptions":[{"id":1,"name":"очки","dosage":"постоянно","instructions":"","doctorId":2,"patientId":4,"appointmentId":4},{"id":2,"name":"ацидофилин","dosage":"3 раза в день 7 дней в неделю","instructions":"","doctorId":2,"patientId":4,"appointmentId":4}]}]}
 
-const tempHospApp = {"Hospitals":[{"name":"Первая городская больница"}],"Appointments":[{"date":"2023-05-18T10:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Соболева Таисия Ильинична"}}},{"date":"2023-05-18T11:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Васильев Марк Матвеевич"}}},{"date":"2023-05-15T10:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Соболева Таисия Ильинична"}}},{"date":"2023-05-16T11:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Васильев Марк Матвеевич"}}},{"date":"2023-05-16T10:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Соболева Таисия Ильинична"}}}]}
+const tempHospApp = {"Hospitals":[{"name":"Первая городская больница"}],"Appointments":[{"date":"2023-05-18T10:00:00.000Z","diagnosis":"","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Соколов Денис Константинович"}},"Prescriptions":[]},{"date":"2023-05-10T10:00:00.000Z","diagnosis":"астигматизм","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Соболева Кира Никитична"}},"Prescriptions":[{"id":1,"name":"очки","dosage":"постоянно","instructions":"","doctorId":2,"patientId":4,"appointmentId":4},{"id":2,"name":"ацидофилин","dosage":"3 раза в день 7 дней в неделю","instructions":"","doctorId":2,"patientId":4,"appointmentId":4}]}]}
 
 
 
@@ -33,8 +34,8 @@ const ProfilePage = () => {
           setInfo(response.data);
         })
       }
-      // setInfo(tempHospApp)
-      // setIsDoctor("doctor")
+      // setInfo(tempApp)
+      // setIsDoctor("patient")
     }, [])
 
     useEffect(() => {
@@ -86,12 +87,31 @@ const ProfilePage = () => {
               <div className='flex flex-row '>
                 <div className='flex flex-col'>
                   <div className='text-lg font-medium pt-8 pb-2'>Список ближайших записей:</div>
-                  <div className='flex flex-col justify-start space-y-2 max-h-60 overflow-scroll overflow-x-hidden w-80'>
+                  <div className='flex flex-col justify-start space-y-2 max-h-60 overflow-scroll overflow-x-hidden w-80 relative'>
                         {sortedAppointments?.map(appointment => (
                           <div className='py-3 px-5 border-slate-800 border-2 rounded-md'>
                             <div className='font-medium pb-2'>{appointment?.Patient?.User?.name}</div>
                             <div className='font-light'>{appointment?.date?.substring(0,10)} в {appointment?.date.substring(11,16)}</div>
-                            <div className='font-light text-sm'>{appointment?.Hospital?.name}</div>
+                            <div className='font-light text-sm pb-2'>{appointment?.Hospital?.name}</div>
+                            <div className={`bg-slate-800 h-0.5 w-80 left-0 absolute
+                              ${
+                                appointment?.Prescriptions?.length == 0 ? "hidden" : ""
+                              }
+                              `}></div>
+                            <div>
+                              <div className={`text-md font-semibold pt-3
+                              ${
+                                appointment?.Prescriptions?.length == 0 ? "hidden" : ""
+                              }
+                              `}> Предписания </div>
+                              <div>{appointment.Prescriptions.map(prescription => (
+                                <div className='flex flex-col p-2'>
+                                  <div className='text-sm font-semibold'>{prescription.name}</div>
+                                  <div className='text-sm'>{prescription.instructions}</div>
+                                  <div className='text-sm'>{prescription.dosage}</div>
+                                </div>
+                              ))}</div>
+                            </div>
                           </div>
                         ))
                       }
@@ -100,12 +120,31 @@ const ProfilePage = () => {
 
                 <div className='flex flex-col pl-5'>
                   <div className='text-lg font-medium pt-8 pb-2'>Список прошедших записей:</div>
-                  <div className='flex flex-col justify-start space-y-2 max-h-60 overflow-scroll overflow-x-hidden w-80'>
+                  <div className='flex flex-col justify-start space-y-2 max-h-60 overflow-scroll overflow-x-hidden w-80 relative'>
                         {oldAppointments?.map(appointment => (
                           <div className='py-3 px-5 border-slate-800 border-2 rounded-md'>
                             <div className='font-medium pb-2'>{appointment?.Patient?.User?.name}</div>
                             <div className='font-light'>{appointment?.date?.substring(0,10)} в {appointment?.date.substring(11,16)}</div>
-                            <div className='font-light text-sm'>{appointment?.Hospital?.name}</div>
+                            <div className='font-light text-sm pb-2'>{appointment?.Hospital?.name}</div>
+                            <div className={`bg-slate-800 h-0.5 w-80 left-0 absolute
+                              ${
+                                appointment?.Prescriptions?.length == 0 ? "hidden" : ""
+                              }
+                              `}></div>
+                            <div>
+                              <div className={`text-md font-semibold pt-3
+                              ${
+                                appointment?.Prescriptions?.length == 0 ? "hidden" : ""
+                              }
+                              `}> Предписания </div>
+                              <div>{appointment.Prescriptions.map(prescription => (
+                                <div className='flex flex-col p-2'>
+                                  <div className='text-sm font-semibold'>{prescription.name}</div>
+                                  <div className='text-sm'>{prescription.instructions}</div>
+                                  <div className='text-sm'>{prescription.dosage}</div>
+                                </div>
+                              ))}</div>
+                            </div>
                           </div>
                         ))
                       }
@@ -118,12 +157,31 @@ const ProfilePage = () => {
             <div className='flex flex-row '>
               <div className='flex flex-col'>
                 <div className='text-lg font-medium pt-8 pb-2'>Список ваших записей:</div>
-                <div className='flex flex-col justify-start space-y-2 max-h-60 overflow-scroll overflow-x-hidden w-80'>
+                <div className='flex flex-col justify-start space-y-2 max-h-60 overflow-scroll overflow-x-hidden w-80 relative'>
                       {sortedAppointments?.map(appointment => (
                         <div className='py-3 px-5 border-slate-800 border-2 rounded-md'>
                           <div className='font-medium pb-2'>{appointment?.Doctor?.User?.name}</div>
                           <div className='font-light'>{appointment?.date?.substring(0,10)} в {appointment?.date.substring(11,16)}</div>
-                          <div className='font-light text-sm'>{appointment?.Hospital?.name}</div>
+                          <div className='font-light text-sm pb-2'>{appointment?.Hospital?.name}</div>
+                          <div className={`bg-slate-800 h-0.5 w-80 left-0 absolute
+                              ${
+                                appointment?.Prescriptions?.length == 0 ? "hidden" : ""
+                              }
+                              `}></div>
+                            <div>
+                              <div className={`text-md font-semibold pt-3
+                              ${
+                                appointment?.Prescriptions?.length == 0 ? "hidden" : ""
+                              }
+                              `}> Предписания </div>
+                              <div>{appointment.Prescriptions.map(prescription => (
+                                <div className='flex flex-col p-2'>
+                                  <div className='text-sm font-semibold'>{prescription.name}</div>
+                                  <div className='text-sm'>{prescription.instructions}</div>
+                                  <div className='text-sm'>{prescription.dosage}</div>
+                                </div>
+                              ))}</div>
+                            </div>
                         </div>
                       ))
                     }
@@ -131,12 +189,31 @@ const ProfilePage = () => {
               </div>
               <div className='flex flex-col pl-5'>
                 <div className='text-lg font-medium pt-8 pb-2'>Список прошедших записей:</div>
-                <div className='flex flex-col justify-start space-y-2 max-h-60 overflow-scroll overflow-x-hidden w-80'>
+                <div className='flex flex-col justify-start space-y-2 max-h-60 overflow-scroll overflow-x-hidden w-80 relative'>
                       {oldAppointments?.map(appointment => (
                         <div className='py-3 px-5 border-slate-800 border-2 rounded-md'>
                           <div className='font-medium pb-2'>{appointment?.Doctor?.User?.name}</div>
                           <div className='font-light'>{appointment?.date?.substring(0,10)} в {appointment?.date.substring(11,16)}</div>
-                          <div className='font-light text-sm'>{appointment?.Hospital?.name}</div>
+                          <div className='font-light text-sm pb-2'>{appointment?.Hospital?.name}</div>
+                          <div className={`bg-slate-800 h-0.5 w-80 left-0 absolute
+                              ${
+                                appointment?.Prescriptions?.length == 0 ? "hidden" : ""
+                              }
+                              `}></div>
+                            <div>
+                              <div className={`text-md font-semibold pt-3
+                              ${
+                                appointment?.Prescriptions?.length == 0 ? "hidden" : ""
+                              }
+                              `}> Предписания </div>
+                              <div>{appointment.Prescriptions.map(prescription => (
+                                <div className='flex flex-col p-2'>
+                                  <div className='text-sm font-semibold'>{prescription.name}</div>
+                                  <div className='text-sm'>{prescription.instructions}</div>
+                                  <div className='text-sm'>{prescription.dosage}</div>
+                                </div>
+                              ))}</div>
+                            </div>
                         </div>
                       ))
                     }

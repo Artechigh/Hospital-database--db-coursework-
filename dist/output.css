@@ -710,6 +710,22 @@ video {
   height: 100vh;
 }
 
+.h-2 {
+  height: 0.5rem;
+}
+
+.h-\[\] {
+  height: ;
+}
+
+.h-0 {
+  height: 0px;
+}
+
+.h-0\.5 {
+  height: 0.125rem;
+}
+
 .max-h-0 {
   max-height: 0px;
 }
@@ -954,6 +970,11 @@ video {
   background-color: rgb(255 255 255 / 0.3);
 }
 
+.bg-slate-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 41 59 / var(--tw-bg-opacity));
+}
+
 .p-1 {
   padding: 0.25rem;
 }
@@ -1065,6 +1086,10 @@ video {
 
 .pt-16 {
   padding-top: 4rem;
+}
+
+.pt-3 {
+  padding-top: 0.75rem;
 }
 
 .text-center {
