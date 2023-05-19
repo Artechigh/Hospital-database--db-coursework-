@@ -47,7 +47,6 @@ const MyCalendar = ({dId}) => {
             apps.push(tempapp)
           })
           setMainEvents([...mainEvents, ...apps])
-          console.log(mainEvents)
         }).catch(function (error) {
           console.log(error)
         });
@@ -100,21 +99,22 @@ const MyCalendar = ({dId}) => {
       this.text = "Запись"
       this.backColor = "#94a3b8"
       this.idDoctor = dId
-      this.startDay = startD
-      this.startHour = startH
+      this.startDay = ""+startD
+      this.startHour = ""+startH
       this.commentary = comment || ""
     }
 
       useEffect(() => {
-        const mainevents_filtered_day = mainEvents.filter(event => event?.date?.slice(8,10) == startDay)
-        const maintimes = mainevents_filtered_day.map(event => event.date?.slice(11,13))
-        console.log(mainEvents.filter(event => event?.date?.slice(8,10) == selected))
+        const mainevents_filtered_day = mainEvents.filter(event => event?.startDay == startDay)
+        const maintimes = mainevents_filtered_day.map(event => event.startHour)
+        console.log(maintimes)
         setTimesDay(maintimes)
-    }, [ startDay])
+    }, [mainEvents,startDay])
 
     function handleEventCreation() {
       const temp = new event(startDay, startHour, inputValue)
       setMainEvents([...mainEvents, temp])
+      setStartHour("")
     }
 
 
@@ -177,7 +177,7 @@ const MyCalendar = ({dId}) => {
               }}
               className={`px-2 py-1 rounded-md text-black bg-slate-300 border-2 border-slate-800
               ${
-                timesDay.indexOf(time.n) < 0
+                timesDay.indexOf(""+time.n) < 0
                 ? "block"
                 : "hidden"
               }
