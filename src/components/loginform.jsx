@@ -25,7 +25,7 @@ const Login = () => {
       }).catch(function (response) {
         setError(response);
         console.log(response)
-      });;
+      });
   };
 
   const forceback = () => {
