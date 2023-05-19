@@ -119,6 +119,7 @@ export async function findUserByEmail(email) {
       select: {
         id: true,
         name: true,
+        password: true,
         email: true,
         birthDate: true,
         gender: true
