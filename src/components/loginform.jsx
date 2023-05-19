@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -18,6 +19,7 @@ const Login = () => {
       .then((response) => {
         setResponce(response.data.message);
         sessionStorage.setItem('user', JSON.stringify(response?.data?.User));
+        useNavigate(-1)
       }).catch(function (response) {
         setError(response);
         console.log(response)
