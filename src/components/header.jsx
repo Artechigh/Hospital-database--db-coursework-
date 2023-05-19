@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router'
 
 const Header = () => {
 
-  function handleLogout() {
+  const handleLogout = () => {
     sessionStorage.removeItem('user')
     useNavigate(0)
   }
