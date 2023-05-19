@@ -36,7 +36,7 @@ const ProfilePage = () => {
 
   return (
     <div>
-        <div className='flex flex-col justify-center items-start space-y-4'>
+        <div className='flex flex-col justify-center items-start space-y-4 pt-16'>
             <div className='font-bold text-2xl pb-3'>
                 {JSON.parse(user)?.name}
             </div>
@@ -62,9 +62,8 @@ const ProfilePage = () => {
               </div>
 
               <div className='text-lg font-medium pt-8 pb-2'>Список ближайших записей:</div>
-              <div className='flex flex-col justify-start'>
-                  {
-                    info?.Appointments?.map(appointment => (
+              <div className='flex flex-col justify-start space-y-2 max-h-60 overflow-scroll overflow-x-hidden'>
+                    {info?.Appointments?.map(appointment => (
                       <div className='py-3 px-5 border-slate-800 border-2 rounded-md'>
                         <div className='font-medium pb-2'>{appointment?.patientName}</div>
                         <div className='font-light'>{appointment?.date.substring(0,10)} в {appointment?.date.substring(11,16)}</div>
