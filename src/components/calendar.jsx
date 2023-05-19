@@ -116,7 +116,7 @@ const MyCalendar = ({dId, hId}) => {
         date: `2023-05-${startDay}T${startHour}:00:00.000Z`,
         doctorId: +dId,
         hospitalId: +hId,
-        patientID: 666
+        patientId: 666
       }).then((response) => {
         console.log(response.data);
       })
