@@ -8,10 +8,23 @@ const ProfilePage = () => {
     useEffect(() => {
       if (JSON.parse(user)?.Patient) {
         setIsDoctor("patient")
+        axios.post("http://localhost:3000/data/patient/appointments", {
+          id: JSON.parse(user)?.Patient?.id,
+        })
+        .then((response) => {
+          console.log(response.data);
+        })
       } else if (JSON.parse(user)?.Doctor) {
         setIsDoctor("doctor")
+        axios.post("http://localhost:3000/data/doctor/hopitalsAndAppointments", {
+          id: JSON.parse(user)?.Doctor?.id,
+        })
+        .then((response) => {
+          console.log(response.data);
+        })
       }
     }, [])
+    
     
 
   return (
