@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 const tempApp = {"Appointments":[{"id":1,"date":"2023-05-18T10:00:00.000Z","diagnosis":"","hospitalName":"name","doctorName":"name","patientId":1},{"id":5,"date":"2023-05-15T10:00:00.000Z","diagnosis":null,"hospitalId":1,"doctorId":1,"patientId":1},{"id":7,"date":"2023-05-16T10:00:00.000Z","diagnosis":null,"hospitalId":1,"doctorId":1,"patientId":1}]}
 
-const tempHospApp = {"Hospitals":[{"name":"Первая городская больница"}],"Appointments":[{"Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Соболева Таисия Ильинична"}}},{"Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Васильев Марк Матвеевич"}}},{"Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Соболева Таисия Ильинична"}}},{"Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Васильев Марк Матвеевич"}}},{"Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Соболева Таисия Ильинична"}}}]}
+const tempHospApp = {"Hospitals":[{"name":"Первая городская больница"}],"Appointments":[{"date":"2023-05-18T10:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Соболева Таисия Ильинична"}}},{"date":"2023-05-18T11:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Васильев Марк Матвеевич"}}},{"date":"2023-05-15T10:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Соболева Таисия Ильинична"}}},{"date":"2023-05-16T11:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Васильев Марк Матвеевич"}}},{"date":"2023-05-16T10:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Соболева Таисия Ильинична"}}}]}
 
 
 
@@ -31,20 +31,26 @@ const ProfilePage = () => {
           setInfo(response.data);
         })
       }
-      // setInfo(tempApp)
-      // setIsDoctor("patient")
+      // setInfo(tempHospApp)
+      // setIsDoctor("doctor")
     }, [])
 
     useEffect(() => {
-      const sorted = info?.Appointments?.sort(SortArray)
+      const sorted = info?.Appointments?.sort(SortArrayH).sort(SortArrayD)
       setSortedAppointments(sorted);
     }, [info])
     
-    function SortArray(x, y){
+    function SortArrayD(x, y){
       if (x?.date?.substring(8,10) < y?.date?.substring(8,10)) {return -1;}
       if (x?.date?.substring(8,10) > y?.date?.substring(8,10)) {return 1;}
       return 0;
-  }
+    }
+
+    function SortArrayH(x, y){
+      if (x?.date?.substring(11,13) < y?.date?.substring(11,13)) {return -1;}
+      if (x?.date?.substring(11,13) > y?.date?.substring(11,13)) {return 1;}
+      return 0;
+    }
     
 
   return (
@@ -79,7 +85,7 @@ const ProfilePage = () => {
                     {sortedAppointments?.map(appointment => (
                       <div className='py-3 px-5 border-slate-800 border-2 rounded-md'>
                         <div className='font-medium pb-2'>{appointment?.Patient?.User?.name}</div>
-                        {/* <div className='font-light'>{appointment?.date?.substring(0,10)} в {appointment?.date.substring(11,16)}</div> */}
+                        <div className='font-light'>{appointment?.date?.substring(0,10)} в {appointment?.date.substring(11,16)}</div>
                         <div className='font-light text-sm'>{appointment?.Hospital?.name}</div>
                       </div>
                     ))
