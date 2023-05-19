@@ -16,13 +16,6 @@ const MyCalendar = ({dId, hId}) => {
     const user = sessionStorage.getItem('user')
 
 
-    if (JSON.parse(user)?.Patient) {
-      setUserType("patient")
-    } else {
-      setUserType("doctor")
-    }
-
-
     //
     const AppointmentsTemp = [{"id":1,"date":"2023-05-17T10:00:00.000Z","doctorId":1,"hospitalId":0},{"id":2,"date":"2023-05-18T10:00:00.000Z","doctorId":1,"hospitalId":0}]
     //
@@ -58,14 +51,11 @@ const MyCalendar = ({dId, hId}) => {
         }).catch(function (error) {
           console.log(error)
         });
-      // const apps = []
-      // AppointmentsTemp.forEach(app => {
-      //       console.log(app)
-      //       const tempapp = new event(app?.date?.slice(8,10), app?.date?.slice(11,13))
-      //       apps.push(tempapp)
-      // })
-      // console.log(apps)
-      // setMainEvents([...mainEvents, ...apps])
+        if (JSON.parse(user)?.Patient) {
+          setUserType("patient")
+        } else {
+          setUserType("doctor")
+        }
     }, [])
 
     
