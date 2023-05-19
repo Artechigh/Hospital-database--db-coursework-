@@ -16,8 +16,26 @@ const ProfilePage = () => {
 
   return (
     <div>
-        {JSON.parse(user)?.name}
-        {isDoctor}
+        <div className='flex flex-col justify-start items-center'>
+            <div className='font-bold text-3xl'>
+                {JSON.parse(user)?.name}
+            </div>
+            <div className='text-xl'>
+                Электронная почта: {JSON.parse(user)?.email}
+            </div>
+            <div className='text-xl'>
+                Дата рождения: {JSON.parse(user)?.birthDate}
+            </div>
+            <div className='text-md'>
+                Пол: {JSON.parse(user)?.gender}
+            </div>
+        </div>
+        {isDoctor
+            // больницы, аппоинтменты
+        }
+        {/* {!isDoctor
+            // Аппоинтмнты, прескрипшн
+        } */}
     </div>
   )
 }
