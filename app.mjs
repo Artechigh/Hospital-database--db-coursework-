@@ -6,7 +6,7 @@ import cors from 'cors';
 import path from 'path'; // "npm install path" required
 import { fileURLToPath } from 'url';
 
-
+var hash = crypto.
 
 const app = express();
 var corsOptions = {
@@ -146,6 +146,8 @@ app.post('/api/login', (req, res) => {
     }
   })
 })
+
+
 
 app.post('/api/register', (req,res) => {
   requestNotifier(req)
