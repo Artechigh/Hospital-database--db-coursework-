@@ -9,7 +9,7 @@ import Login from "./components/loginform.jsx";
 import NotFound from "./components/404.jsx";
 import SignIn from "./components/registerform.jsx";
 import DoctorProfile from "./routes/doctorprofile.jsx";
-import ProfilePage from "./routes/profilepage";
+import ProfilePage from "./routes/profilepage.jsx";
 // import {
 //     createBrowserRouter,
 //     RouterProvider,
