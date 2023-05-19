@@ -17,10 +17,10 @@ const Login = () => {
       })
       .then((response) => {
         setResponce(response.data.message);
-        localStorage.setItem('user', response?.data?.User);
+        localStorage.setItem('user', JSON.stringify(response?.data?.User));
         const user = localStorage.getItem('testObject')
-        console.log(JSON.stringify(user));
-        console.log(JSON.stringify(user?.name));
+        console.log(user);
+        console.log(JSON.stringify(JSON.parse(user)?.name));
       }).catch(function (response) {
         setError(response);
         console.log(response)
