@@ -14,13 +14,13 @@ const MyCalendar = ({dId, hId}) => {
 
 
     const user = sessionStorage.getItem('user')
+
+
     if (JSON.parse(user)?.Patient) {
       setUserType("patient")
     } else {
       setUserType("doctor")
     }
-     
-    const uId = JSON.parse(user)?.id;
 
 
     //
@@ -130,7 +130,7 @@ const MyCalendar = ({dId, hId}) => {
         date: `2023-05-${startDay}T${startHour}:00:00.000Z`,
         doctorId: +dId,
         hospitalId: +hId,
-        patientId: +uId
+        patientId: +pId
       }).then((response) => {
         console.log(response.data);
       })
