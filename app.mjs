@@ -112,7 +112,7 @@ app.post('/api/login', (req, res) => {
       res.json({message: "Записи с данной э. почтой не найдено"})
     } else {
       if (req.body.password==result.password) {
-        res.json({ message: "Вход произведен успешно, перенаправление.", result }); 
+        res.json({ message: "Вход произведен успешно, перенаправление.", User: result }); 
       } else {
         res.json({ message: "Введен неверный пароль"})
       }
