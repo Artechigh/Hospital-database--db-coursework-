@@ -17,6 +17,7 @@ export async function getDoctorsHospitalsAndAppointments(doctorId) {
       },
       Appointments: {
         select: {
+          date: true,
           Hospital: {
             select: {
               name: true
