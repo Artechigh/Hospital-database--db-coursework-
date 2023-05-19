@@ -99,6 +99,10 @@ app.post('/data/patient/appointments', (req,res)=>{
   })
 })
 
+// getPatientsAppointments(1).then(result=>{
+//   console.log(`/appointments: ${JSON.stringify(result) }`);
+// })
+
 
 app.post('/data/doctor/nextAppointments', (req,res)=>{
   requestNotifier(req)
@@ -178,6 +182,6 @@ app.listen(3000, () => {
 });
 
 
-// /appointments: {"Appointments":[{"id":1,"date":"2023-05-18T10:00:00.000Z","diagnosis":"","hospitalId":1,"doctorId":1,"patientId":1},{"id":5,"date":"2023-05-15T10:00:00.000Z","diagnosis":null,"hospitalId":1,"doctorId":1,"patientId":1},{"id":7,"date":"2023-05-16T10:00:00.000Z","diagnosis":null,"hospitalId":1,"doctorId":1,"patientId":1}]}
+// /appointments: {"Appointments":[{"date":"2023-05-18T10:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Doctor":{"User":{"name":"Петров Степан Викторович"}}},{"date":"2023-05-15T10:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Doctor":{"User":{"name":"Петров Степан Викторович"}}},{"date":"2023-05-16T10:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Doctor":{"User":{"name":"Петров Степан Викторович"}}}]}
 
-// {"Hospitals":[{"name":"Первая городская больница"}],"Appointments":[{"date":"2023-05-18T10:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Соболева Таисия Ильинична"}}},{"date":"2023-05-18T11:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Васильев Марк Матвеевич"}}},{"date":"2023-05-15T10:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Соболева Таисия Ильинична"}}},{"date":"2023-05-16T11:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Васильев Марк Матвеевич"}}},{"date":"2023-05-16T10:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Соболева Таисия Ильинична"}}}]}
+// /hospitalsAndAppointments: {"Hospitals":[{"name":"Первая городская больница"}],"Appointments":[{"date":"2023-05-18T10:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Соболева Таисия Ильинична"}}},{"date":"2023-05-18T11:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Васильев Марк Матвеевич"}}},{"date":"2023-05-15T10:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Соболева Таисия Ильинична"}}},{"date":"2023-05-16T11:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Васильев Марк Матвеевич"}}},{"date":"2023-05-16T10:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Соболева Таисия Ильинична"}}}]}

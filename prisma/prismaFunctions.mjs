@@ -45,7 +45,25 @@ export async function getPatientsAppointments(patientId) {
       id: patientId
     },
     select: {
-      Appointments: true
+      Appointments: {
+        select: {
+          date: true,
+          Hospital: {
+            select: {
+              name: true
+            }
+          },
+          Doctor: {
+            select: {
+              User: {
+                select: {
+                  name: true
+                }
+              }
+            }
+          }
+        }
+      }
     }
   })
   return resultPackage
