@@ -134,7 +134,7 @@ const ProfilePage = () => {
                 <div className='flex flex-col justify-start space-y-2 max-h-60 overflow-scroll overflow-x-hidden w-80'>
                       {oldAppointments?.map(appointment => (
                         <div className='py-3 px-5 border-slate-800 border-2 rounded-md'>
-                          <div className='font-medium pb-2'>{appointment?.Patient?.User?.name}</div>
+                          <div className='font-medium pb-2'>{appointment?.Doctor?.User?.name}</div>
                           <div className='font-light'>{appointment?.date?.substring(0,10)} в {appointment?.date.substring(11,16)}</div>
                           <div className='font-light text-sm'>{appointment?.Hospital?.name}</div>
                         </div>
