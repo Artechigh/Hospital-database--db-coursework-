@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router'
 
 const Header = () => {
+  const navigate = useNavigate()
 
   const handleLogout = () => {
     sessionStorage.removeItem('user')
-    useNavigate("/")
+    navigate("/")
     window.location.reload(false)
   }
 
