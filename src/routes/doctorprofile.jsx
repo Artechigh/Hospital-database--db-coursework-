@@ -40,7 +40,7 @@ const DoctorProfile = () => {
           {profileInfo?.User?.email}
         </div>
       </div>
-        <MyCalendar dId={id}/>
+        <MyCalendar dId={id} hId={hId}/>
     </div>
   )
 }

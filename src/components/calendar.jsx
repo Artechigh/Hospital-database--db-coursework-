@@ -3,7 +3,7 @@ import {DayPilot, DayPilotCalendar} from "@daypilot/daypilot-lite-react";
 import { BiChevronDown } from "react-icons/bi";
 import axios from 'axios';
 
-const MyCalendar = ({dId}) => {
+const MyCalendar = ({dId, hId}) => {
     const [open, setOpen] = useState(false);
     const [selected, setSelected] = useState("");
     const [startDay, setStartDay] = useState("");
@@ -46,6 +46,7 @@ const MyCalendar = ({dId}) => {
             const tempapp = new event(app?.date?.slice(8,10), app?.date?.slice(11,13))
             apps.push(tempapp)
           })
+          console.log("ID DOCTOR", hId)
           setMainEvents([...mainEvents, ...apps])
         }).catch(function (error) {
           console.log(error)
