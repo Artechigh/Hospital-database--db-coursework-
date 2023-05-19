@@ -10,6 +10,18 @@ const MyCalendar = ({dId, hId}) => {
     const [startHour, setStartHour] = useState("");
     const [timesDay, setTimesDay] = useState([])
     const [inputValue, setInputValue] = useState("")
+    const [userType, setUserType] = useState("")
+
+
+    const user = sessionStorage.getItem('user')
+    if (JSON.parse(user)?.Patient) {
+      setUserType("patient")
+    } else {
+      setUserType("doctor")
+    }
+     
+    const uId = JSON.parse(user)?.id;
+
 
     //
     const AppointmentsTemp = [{"id":1,"date":"2023-05-17T10:00:00.000Z","doctorId":1,"hospitalId":0},{"id":2,"date":"2023-05-18T10:00:00.000Z","doctorId":1,"hospitalId":0}]
@@ -111,8 +123,8 @@ const MyCalendar = ({dId, hId}) => {
       const temp = new event(startDay, startHour, inputValue)
       setMainEvents([...mainEvents, temp])
       setStartHour("")
-      const user = sessionStorage.getItem('user')
-      const uId = JSON.parse(user)?.id;
+
+      const pId = JSON.parse(user)?.Patient?.id
 
       axios.post("http://localhost:3000/data/createAppointment", {
         date: `2023-05-${startDay}T${startHour}:00:00.000Z`,
@@ -214,6 +226,9 @@ const MyCalendar = ({dId, hId}) => {
               className={`placeholder:text-gray-700 bg-slate-300 py-2 px-1 rounded-md outline-none mt-5 w-full border-2 border-slate-800
                 ${
                   !startHour ? "hidden" : ""
+                }
+                ${
+                  userType === "doctor" ? "hidden" : ""
                 }
                 `}
             >Записаться ко врачу</button>
