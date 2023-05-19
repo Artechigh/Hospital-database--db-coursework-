@@ -19,12 +19,16 @@ const Login = () => {
       .then((response) => {
         setResponce(response.data.message);
         sessionStorage.setItem('user', JSON.stringify(response?.data?.User));
-        useNavigate(-1)
+        forceback()
       }).catch(function (response) {
         setError(response);
         console.log(response)
       });;
   };
+
+  const forceback = () => {
+    useNavigate(-1)
+  }
 
   return (
     <div className='flex flex-col justify-center items-center'>
