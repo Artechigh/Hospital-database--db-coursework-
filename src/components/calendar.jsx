@@ -47,6 +47,7 @@ const MyCalendar = ({dId}) => {
             apps.push(tempapp)
           })
           setMainEvents([...mainEvents, ...apps])
+          console.log(mainEvents)
         }).catch(function (error) {
           console.log(error)
         });
@@ -107,8 +108,9 @@ const MyCalendar = ({dId}) => {
       useEffect(() => {
         const mainevents_filtered_day = mainEvents.filter(event => event?.date?.slice(8,10) == startDay)
         const maintimes = mainevents_filtered_day.map(event => event.date?.slice(11,13))
+        console.log(mainEvents.filter(event => event?.date?.slice(8,10) == selected))
         setTimesDay(maintimes)
-    }, [mainEvents, startDay])
+    }, [ startDay])
 
     function handleEventCreation() {
       const temp = new event(startDay, startHour, inputValue)
