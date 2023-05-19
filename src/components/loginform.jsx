@@ -17,7 +17,7 @@ const Login = () => {
       })
       .then((response) => {
         setResponce(response.data.message);
-        localStorage.setItem('user', response?.data?.User);
+        localStorage.setItem('user', ...response?.data?.User);
         const user = localStorage.getItem('testObject')
         console.log(user);
         console.log(user?.name);
