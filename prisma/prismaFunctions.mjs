@@ -236,12 +236,14 @@ export async function createAppointment(date, doctorId, patientId, hospitalId) {
   const newAppointment = await prisma.appointment.create({
     data: {
       date: date,
-      hospitalId: hospitalId,
       Doctor: {
         connect: { id: doctorId }
       },
       Patient: {
         connect: { id: patientId }
+      },
+      Hospital: {
+        connect: { id: hospitalId}
       }
     }
   })
