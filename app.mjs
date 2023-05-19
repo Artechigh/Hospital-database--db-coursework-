@@ -68,6 +68,15 @@ app.post('/data/doctor',(req,res)=>{
   })
 })
 
+app.post('/data/createAppointment', (req,res)=>{
+  requestNotifier(req)
+  console.log('create appointment')
+  createAppointment(req.body.date, req.body.doctorId, req.body.patientId, req.body.hospitalId).then(result=>{
+    respondJsonResult(res,result)
+  })
+})
+
+
 app.post('/data/doctor/nextAppointments', (req,res)=>{
   requestNotifier(req)
   console.log('searching for All Appointments Lite By Doctor Id');
