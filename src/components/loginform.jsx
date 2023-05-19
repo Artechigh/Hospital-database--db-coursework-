@@ -27,7 +27,7 @@ const Login = () => {
   };
 
   const forceback = () => {
-    useNavigate(-1)
+    window.location.reload(false)
   }
 
   return (
