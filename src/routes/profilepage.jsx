@@ -25,7 +25,7 @@ const ProfilePage = () => {
         })
       } else if (JSON.parse(user)?.Doctor) {
         setIsDoctor("doctor")
-        axios.post("http://localhost:3000/data/doctor/hopitalsAndAppointments", {
+        axios.post("http://localhost:3000/data/doctor/hospitalsAndAppointments", {
           id: JSON.parse(user)?.Doctor?.id,
         })
         .then((response) => {
