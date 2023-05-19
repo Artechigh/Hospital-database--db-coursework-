@@ -122,7 +122,17 @@ export async function findUserByEmail(email) {
         password: true,
         email: true,
         birthDate: true,
-        gender: true
+        gender: true,
+        Doctor: {
+          select: {
+            id: true
+          }
+        },
+        Patient: {
+          select: {
+            id: true
+          }
+        }
       }
     });
     return user;
