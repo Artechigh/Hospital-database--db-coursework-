@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+const CryptoJS = require("crypto-js");
 
 
 
@@ -14,9 +15,10 @@ const Login = () => {
 
   const handleSubmit = (e) => {
       e.preventDefault();
+      let hash = JSON.stringify(CryptoJS.MD5(e.target.password.value)) 
        axios.post("http://localhost:3000/api/login", {
         email: e.target.email.value,
-        password: e.target.password.value,
+        password: hash,
       })
       .then((response) => {
         setResponce(response.data.message);

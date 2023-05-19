@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from "axios";
+const CryptoJS = require("crypto-js");
 
 const SignIn = () => {
   const [responce, setResponce] = useState('')
@@ -12,10 +13,11 @@ const SignIn = () => {
       if (e.target.password2.value != e.target.password.value){
         setPassState('Пароли не совпадают!')
       } else {
+        let hash = JSON.stringify(CryptoJS.MD5(e.target.password.value)) 
         axios.post("http://localhost:3000/api/register", {
           name: e.target.username.value,
           email: e.target.email.value,
-          password: e.target.password.value
+          password: hash
         })
         .then((response) => {
           setResponce(response.data.message);
