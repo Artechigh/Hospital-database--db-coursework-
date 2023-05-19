@@ -58,6 +58,7 @@ export async function getPatientsAppointments(patientId) {
           },
           Doctor: {
             select: {
+              specialty: true,
               User: {
                 select: {
                   name: true
