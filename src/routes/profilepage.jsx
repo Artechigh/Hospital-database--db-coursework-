@@ -11,29 +11,40 @@ const ProfilePage = () => {
     const user = sessionStorage.getItem('user')
     const [isDoctor, setIsDoctor] = useState("")
     const [info, setInfo] = useState(null)
+    const [sortedAppointments, setSortedAppointments] = useState([])
 
     useEffect(() => {
-      // if (JSON.parse(user)?.Patient) {
-      //   setIsDoctor("patient")
-      //   axios.post("http://localhost:3000/data/patient/appointments", {
-      //     id: JSON.parse(user)?.Patient?.id,
-      //   })
-      //   .then((response) => {
-      //     setInfo(response.data);
-      //   })
-      // } else if (JSON.parse(user)?.Doctor) {
-      //   setIsDoctor("doctor")
-      //   axios.post("http://localhost:3000/data/doctor/hopitalsAndAppointments", {
-      //     id: JSON.parse(user)?.Doctor?.id,
-      //   })
-      //   .then((response) => {
-      //     setInfo(response.data);
-      //   })
-      // }
-      setInfo(tempApp)
-      setIsDoctor("patient")
+      if (JSON.parse(user)?.Patient) {
+        setIsDoctor("patient")
+        axios.post("http://localhost:3000/data/patient/appointments", {
+          id: JSON.parse(user)?.Patient?.id,
+        })
+        .then((response) => {
+          setInfo(response.data);
+        })
+      } else if (JSON.parse(user)?.Doctor) {
+        setIsDoctor("doctor")
+        axios.post("http://localhost:3000/data/doctor/hopitalsAndAppointments", {
+          id: JSON.parse(user)?.Doctor?.id,
+        })
+        .then((response) => {
+          setInfo(response.data);
+        })
+      }
+      // setInfo(tempApp)
+      // setIsDoctor("patient")
     }, [])
+
+    useEffect(() => {
+      const sorted = info?.Appointments?.sort(SortArray)
+      setSortedAppointments(sorted);
+    }, [info])
     
+    function SortArray(x, y){
+      if (x?.date?.substring(8,10) < y?.date?.substring(8,10)) {return -1;}
+      if (x?.date?.substring(8,10) > y?.date?.substring(8,10)) {return 1;}
+      return 0;
+  }
     
 
   return (
@@ -65,7 +76,7 @@ const ProfilePage = () => {
 
               <div className='text-lg font-medium pt-8 pb-2'>Список ближайших записей:</div>
               <div className='flex flex-col justify-start space-y-2 max-h-60 overflow-scroll overflow-x-hidden'>
-                    {info?.Appointments?.map(appointment => (
+                    {sortedAppointments?.map(appointment => (
                       <div className='py-3 px-5 border-slate-800 border-2 rounded-md'>
                         <div className='font-medium pb-2'>{appointment?.Patient?.User?.name}</div>
                         {/* <div className='font-light'>{appointment?.date?.substring(0,10)} в {appointment?.date.substring(11,16)}</div> */}
@@ -80,10 +91,10 @@ const ProfilePage = () => {
             <div>
               <div className='text-lg font-medium pt-8 pb-2'>Список ваших записей:</div>
               <div className='flex flex-col justify-start space-y-2 max-h-60 overflow-scroll overflow-x-hidden'>
-                    {info?.Appointments?.map(appointment => (
+                    {sortedAppointments?.map(appointment => (
                       <div className='py-3 px-5 border-slate-800 border-2 rounded-md'>
                         <div className='font-medium pb-2'>{appointment?.Patient?.User?.name}</div>
-                        {/* <div className='font-light'>{appointment?.date?.substring(0,10)} в {appointment?.date.substring(11,16)}</div> */}
+                        <div className='font-light'>{appointment?.date?.substring(0,10)} в {appointment?.date.substring(11,16)}</div>
                         <div className='font-light text-sm'>{appointment?.Hospital?.name}</div>
                       </div>
                     ))
