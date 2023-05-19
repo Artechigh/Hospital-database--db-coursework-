@@ -111,12 +111,14 @@ const MyCalendar = ({dId, hId}) => {
       const temp = new event(startDay, startHour, inputValue)
       setMainEvents([...mainEvents, temp])
       setStartHour("")
+      const user = sessionStorage.getItem('user')
+      const uId = JSON.parse(user)?.id;
 
       axios.post("http://localhost:3000/data/createAppointment", {
         date: `2023-05-${startDay}T${startHour}:00:00.000Z`,
         doctorId: +dId,
         hospitalId: +hId,
-        patientId: 1
+        patientId: +uId
       }).then((response) => {
         console.log(response.data);
       })
