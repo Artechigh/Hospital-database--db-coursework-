@@ -18,6 +18,7 @@ export async function getDoctorsHospitalsAndAppointments(doctorId) {
       Appointments: {
         select: {
           date: true,
+          diagnosis: true,
           Hospital: {
             select: {
               name: true
@@ -31,7 +32,8 @@ export async function getDoctorsHospitalsAndAppointments(doctorId) {
                 }
               }
             }
-          }
+          },
+          Prescriptions: true
         }
       }
     }
@@ -48,6 +50,7 @@ export async function getPatientsAppointments(patientId) {
       Appointments: {
         select: {
           date: true,
+          diagnosis: true,
           Hospital: {
             select: {
               name: true
@@ -61,7 +64,8 @@ export async function getPatientsAppointments(patientId) {
                 }
               }
             }
-          }
+          },
+          Prescriptions: true
         }
       }
     }

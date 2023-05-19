@@ -87,7 +87,7 @@ app.post('/data/doctor/hospitalsAndAppointments', (req,res)=>{
   })
 })
 
-// getDoctorsHospitalsAndAppointments(1).then(result=>{
+// getDoctorsHospitalsAndAppointments(2).then(result=>{
 //   console.log(`/hospitalsAndAppointments: ${JSON.stringify(result) }`);})
 
 
@@ -99,7 +99,7 @@ app.post('/data/patient/appointments', (req,res)=>{
   })
 })
 
-// getPatientsAppointments(1).then(result=>{
+// getPatientsAppointments(4).then(result=>{
 //   console.log(`/appointments: ${JSON.stringify(result) }`);
 // })
 
@@ -182,6 +182,6 @@ app.listen(3000, () => {
 });
 
 
-// /appointments: {"Appointments":[{"date":"2023-05-18T10:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Doctor":{"User":{"name":"Петров Степан Викторович"}}},{"date":"2023-05-15T10:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Doctor":{"User":{"name":"Петров Степан Викторович"}}},{"date":"2023-05-16T10:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Doctor":{"User":{"name":"Петров Степан Викторович"}}}]}
+// /appointments: {"Appointments":[{"date":"2023-05-10T10:00:00.000Z","diagnosis":"астигматизм","Hospital":{"name":"Первая городская больница"},"Doctor":{"User":{"name":"Ермолова Милана Антоновна"}},"Prescriptions":[{"id":1,"name":"очки","dosage":"постоянно","instructions":"","doctorId":2,"patientId":4,"appointmentId":4},{"id":2,"name":"ацидофилин","dosage":"3 раза в день 7 дней в неделю","instructions":"","doctorId":2,"patientId":4,"appointmentId":4}]}]}
 
-// /hospitalsAndAppointments: {"Hospitals":[{"name":"Первая городская больница"}],"Appointments":[{"date":"2023-05-18T10:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Соболева Таисия Ильинична"}}},{"date":"2023-05-18T11:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Васильев Марк Матвеевич"}}},{"date":"2023-05-15T10:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Соболева Таисия Ильинична"}}},{"date":"2023-05-16T11:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Васильев Марк Матвеевич"}}},{"date":"2023-05-16T10:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Соболева Таисия Ильинична"}}}]}
+// /hospitalsAndAppointments: {"Hospitals":[{"name":"Первая городская больница"}],"Appointments":[{"date":"2023-05-18T10:00:00.000Z","diagnosis":"","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Соколов Денис Константинович"}},"Prescriptions":[]},{"date":"2023-05-10T10:00:00.000Z","diagnosis":"астигматизм","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Соболева Кира Никитична"}},"Prescriptions":[{"id":1,"name":"очки","dosage":"постоянно","instructions":"","doctorId":2,"patientId":4,"appointmentId":4},{"id":2,"name":"ацидофилин","dosage":"3 раза в день 7 дней в неделю","instructions":"","doctorId":2,"patientId":4,"appointmentId":4}]}]}
