@@ -13,6 +13,7 @@ const ProfilePage = () => {
     const [isDoctor, setIsDoctor] = useState("")
     const [info, setInfo] = useState(null)
     const [sortedAppointments, setSortedAppointments] = useState([])
+    const [oldAppointments, setOldAppointments] = useState([])
 
     useEffect(() => {
       if (JSON.parse(user)?.Patient) {
@@ -37,7 +38,9 @@ const ProfilePage = () => {
     }, [])
 
     useEffect(() => {
-      const sorted = info?.Appointments?.sort(SortArrayH).sort(SortArrayD)
+      const sorted = info?.Appointments?.sort(SortArrayH).sort(SortArrayD).filter(item => {+item.date?.substring(8,10) >= 20})
+      const old = info?.Appointments?.sort(SortArrayH).sort(SortArrayD).filter(item => {+item.date?.substring(8,10) < 20})
+      setOldAppointments(old)
       setSortedAppointments(sorted);
     }, [info])
     
@@ -84,6 +87,18 @@ const ProfilePage = () => {
               <div className='text-lg font-medium pt-8 pb-2'>Список ближайших записей:</div>
               <div className='flex flex-col justify-start space-y-2 max-h-60 overflow-scroll overflow-x-hidden w-80'>
                     {sortedAppointments?.map(appointment => (
+                      <div className='py-3 px-5 border-slate-800 border-2 rounded-md'>
+                        <div className='font-medium pb-2'>{appointment?.Patient?.User?.name}</div>
+                        <div className='font-light'>{appointment?.date?.substring(0,10)} в {appointment?.date.substring(11,16)}</div>
+                        <div className='font-light text-sm'>{appointment?.Hospital?.name}</div>
+                      </div>
+                    ))
+                  }
+              </div>
+
+              <div className='text-lg font-medium pt-8 pb-2'>Список прошедших записей:</div>
+              <div className='flex flex-col justify-start space-y-2 max-h-60 overflow-scroll overflow-x-hidden w-80'>
+                    {oldAppointments?.map(appointment => (
                       <div className='py-3 px-5 border-slate-800 border-2 rounded-md'>
                         <div className='font-medium pb-2'>{appointment?.Patient?.User?.name}</div>
                         <div className='font-light'>{appointment?.date?.substring(0,10)} в {appointment?.date.substring(11,16)}</div>
