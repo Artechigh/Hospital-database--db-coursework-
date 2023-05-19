@@ -17,6 +17,7 @@ const Login = () => {
       })
       .then((response) => {
         setResponce(response.data.message);
+        localStorage.setItem('user', response?.data?.User);
       }).catch(function (response) {
         setError(response);
         console.log(response)
