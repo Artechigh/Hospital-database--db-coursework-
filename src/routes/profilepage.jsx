@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-const tempApp = {"Appointments":[{"id":1,"date":"2023-05-18T10:00:00.000Z","diagnosis":"","hospitalName":"name","doctorName":"name","patientId":1},{"id":5,"date":"2023-05-15T10:00:00.000Z","diagnosis":null,"hospitalId":1,"doctorId":1,"patientId":1},{"id":7,"date":"2023-05-16T10:00:00.000Z","diagnosis":null,"hospitalId":1,"doctorId":1,"patientId":1}]}
+const tempApp = {"Appointments":[{"date":"2023-05-18T10:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Doctor":{"User":{"name":"Петров Степан Викторович"}}},{"date":"2023-05-15T10:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Doctor":{"User":{"name":"Петров Степан Викторович"}}},{"date":"2023-05-16T10:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Doctor":{"User":{"name":"Петров Степан Викторович"}}}]}
 
 const tempHospApp = {"Hospitals":[{"name":"Первая городская больница"}],"Appointments":[{"date":"2023-05-18T10:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Соболева Таисия Ильинична"}}},{"date":"2023-05-18T11:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Васильев Марк Матвеевич"}}},{"date":"2023-05-15T10:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Соболева Таисия Ильинична"}}},{"date":"2023-05-16T11:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Васильев Марк Матвеевич"}}},{"date":"2023-05-16T10:00:00.000Z","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Соболева Таисия Ильинична"}}}]}
 
@@ -31,8 +31,8 @@ const ProfilePage = () => {
           setInfo(response.data);
         })
       }
-      // setInfo(tempHospApp)
-      // setIsDoctor("doctor")
+      // setInfo(tempApp)
+      // setIsDoctor("patient")
     }, [])
 
     useEffect(() => {
@@ -81,7 +81,7 @@ const ProfilePage = () => {
               </div>
 
               <div className='text-lg font-medium pt-8 pb-2'>Список ближайших записей:</div>
-              <div className='flex flex-col justify-start space-y-2 max-h-60 overflow-scroll overflow-x-hidden'>
+              <div className='flex flex-col justify-start space-y-2 max-h-60 overflow-scroll overflow-x-hidden w-80'>
                     {sortedAppointments?.map(appointment => (
                       <div className='py-3 px-5 border-slate-800 border-2 rounded-md'>
                         <div className='font-medium pb-2'>{appointment?.Patient?.User?.name}</div>
@@ -96,10 +96,10 @@ const ProfilePage = () => {
         {isDoctor === "patient" ?
             <div>
               <div className='text-lg font-medium pt-8 pb-2'>Список ваших записей:</div>
-              <div className='flex flex-col justify-start space-y-2 max-h-60 overflow-scroll overflow-x-hidden'>
+              <div className='flex flex-col justify-start space-y-2 max-h-60 overflow-scroll overflow-x-hidden w-80'>
                     {sortedAppointments?.map(appointment => (
                       <div className='py-3 px-5 border-slate-800 border-2 rounded-md'>
-                        <div className='font-medium pb-2'>{appointment?.Patient?.User?.name}</div>
+                        <div className='font-medium pb-2'>{appointment?.Doctor?.User?.name}</div>
                         <div className='font-light'>{appointment?.date?.substring(0,10)} в {appointment?.date.substring(11,16)}</div>
                         <div className='font-light text-sm'>{appointment?.Hospital?.name}</div>
                       </div>
