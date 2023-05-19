@@ -4,6 +4,29 @@
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
+export async function getDoctorsHospitalsAndAppointments(doctorId) {
+  const resultPackage = await prisma.doctor.findUnique({
+    where: {
+      id: doctorId
+    },
+    select: {
+      Hospitals: true,
+      Appointments: true
+    }
+  })
+}
+
+export async function getPatientsAppointments(patienId) {
+  const resultPackage = await prisma.patient.findUnique({
+    where: {
+      id: patienId
+    },
+    select: {
+      Appointments: true
+    }
+  })
+}
+
 export async function createHospital(name, address, phone) {
   const newHospital = await prisma.hospital.create({
     data: {
