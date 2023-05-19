@@ -8,7 +8,7 @@ const ProfilePage = () => {
     useEffect(() => {
       if (JSON.parse(user)?.Patient) {
         setIsDoctor(false)
-      } else {
+      } else if (JSON.parse(user)?.Doctor) {
         setIsDoctor(true)
       }
     }, [])
