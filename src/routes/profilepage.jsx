@@ -16,8 +16,8 @@ const ProfilePage = () => {
 
   return (
     <div>
-        <div className='flex flex-col justify-start items-center'>
-            <div className='font-bold text-3xl'>
+        <div className='flex flex-col justify-center items-start space-y-4'>
+            <div className='font-bold text-4xl pb-3'>
                 {JSON.parse(user)?.name}
             </div>
             <div className='text-xl'>
@@ -26,8 +26,8 @@ const ProfilePage = () => {
             <div className='text-xl'>
                 Дата рождения: {JSON.parse(user)?.birthDate}
             </div>
-            <div className='text-md'>
-                Пол: {JSON.parse(user)?.gender}
+            <div className='text-xl'>
+                Пол: {JSON.parse(user)?.gender.substring(0, 10)}
             </div>
         </div>
         {isDoctor
