@@ -29,8 +29,8 @@ const Login = () => {
   };
 
   const forceback = () => {
-    window.location.reload(false)
     navigate("/");
+    window.location.reload(false)
 
   }
 
