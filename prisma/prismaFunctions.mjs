@@ -10,21 +10,27 @@ export async function getDoctorsHospitalsAndAppointments(doctorId) {
       id: doctorId
     },
     select: {
-      Hospitals: true,
+      Hospitals: {
+        select: {
+          name: true
+        }
+      },
       Appointments: true
     }
   })
+  return resultPackage
 }
 
-export async function getPatientsAppointments(patienId) {
+export async function getPatientsAppointments(patientId) {
   const resultPackage = await prisma.patient.findUnique({
     where: {
-      id: patienId
+      id: patientId
     },
     select: {
       Appointments: true
     }
   })
+  return resultPackage
 }
 
 export async function createHospital(name, address, phone) {
