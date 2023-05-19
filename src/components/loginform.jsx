@@ -20,8 +20,10 @@ const Login = () => {
       })
       .then((response) => {
         setResponce(response.data.message);
-        sessionStorage.setItem('user', JSON.stringify(response?.data?.User));
-        forceback()
+        if (response.data.message === "Вход произведен успешно, перенаправление."){
+          sessionStorage.setItem('user', JSON.stringify(response?.data?.User));
+          forceback()
+        }
       }).catch(function (response) {
         setError(response);
         console.log(response)
