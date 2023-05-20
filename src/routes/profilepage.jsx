@@ -24,7 +24,7 @@ const ProfilePage = () => {
       // console.log(e.target.id)
       // console.log(clickedId,e.target.name.value,e.target.dosage.value)
       // e.preventDefault();
-       axios.post("http://localhost:3000/", {
+       axios.post("http://localhost:3000/data/newPrescription", {
         id: e.target.id,
         name: e.target.name.value,
         dosage: e.target.name.value,
