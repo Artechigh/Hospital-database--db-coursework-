@@ -32,6 +32,7 @@ const ProfilePage = () => {
       })
       .then((response) => {
         console.log(response)
+        window.location.reload(false)
         }).catch(function (response) {
         console.log(response)
       });
