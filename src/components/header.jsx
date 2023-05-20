@@ -14,16 +14,13 @@ const Header = () => {
 
   return (
     <div className='bg-white/30 w-screen h-[50px] backdrop-blur-sm flex flex-row items-center justify-between fixed top-0 left-0 z-20 p-5'>
-        <div className='font-semibold'>
+        <Link to={"/"} className='font-semibold'>
             MyHospital
-        </div>
+        </Link>
         <div className='flex flex-row space-x-5 pl-10'>
           <Link to={"/appointment"} className='hover:underline hover:text-slate-900'>
             Запись
           </Link>
-          <div className='hover:underline hover:text-slate-900'>
-            Доктора
-          </div>
         </div>
         {
           (sessionStorage.getItem('user')) 
