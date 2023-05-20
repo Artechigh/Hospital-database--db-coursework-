@@ -17,6 +17,7 @@ export async function getDoctorsHospitalsAndAppointments(doctorId) {
       },
       Appointments: {
         select: {
+          id: true,
           date: true,
           diagnosis: true,
           Hospital: {
@@ -49,6 +50,7 @@ export async function getPatientsAppointments(patientId) {
     select: {
       Appointments: {
         select: {
+          id: true,
           date: true,
           diagnosis: true,
           Hospital: {
