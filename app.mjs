@@ -73,7 +73,7 @@ app.post('/data/doctor',(req,res)=>{
 app.post('/data/newPrescription', (req,res)=>{
   requestNotifier(req)
   console.log('creating new prescription');
-  createPrescription(req.body.name, req.body.dosage, req.body.instructions, req.body.id).then(result=>{
+  createPrescription(req.body.name, req.body.dosage, req.body.id).then(result=>{
     respondJsonResult(res,{message: "done"})
   })
 })
