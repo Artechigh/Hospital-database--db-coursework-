@@ -22,7 +22,7 @@ const ProfilePage = () => {
     const handleSubmit = (e) => {
       // e.preventDefault();
       // console.log(e.target.id)
-      // console.log(clickedId,e.target.name.value,e.target.dosage.value)
+      console.log(e.target.id,e.target.name.value,e.target.dosage.value)
         e.preventDefault();
         console.log("button works");
        axios.post("http://localhost:3000/data/newPrescription", {
