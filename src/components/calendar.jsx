@@ -223,12 +223,11 @@ const MyCalendar = ({dId, hId}) => {
                 `}
             >Записаться ко врачу</button>
       </div>
-
-
       </div>
-      {/* <div className='w-[49vw] h-[45vh] absolute top-0 left-0'></div> */}
+        
+        {/* <div className='w-[49vw] h-[45vh] absolute top-0 left-0'></div> */}
               
-        <div className='max-w-[55vw] max-h-[60vh] overflow-clip'>
+        <div className='max-w-[50vw] max-h-[60vh] overflow-clip'>
         <DayPilotCalendar 
             viewType={`Week`} 
             events={mainEvents}
