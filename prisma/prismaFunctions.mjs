@@ -253,7 +253,8 @@ export async function createAppointment(date, doctorId, patientId, hospitalId) {
   return newAppointment
 }
 
-export async function createPrescription(name, dosage, instructions, appointmentId) {
+export async function createPrescription(name, dosage, appointmentId) {
+  const instructions = ""
   const appointment = await prisma.appointment.findUnique({
     where: { id: appointmentId },
     select: { 
