@@ -2,6 +2,7 @@
 // ESSENTIALS
 
 import { PrismaClient } from '@prisma/client'
+import Appointment from '../src/routes/appointment'
 const prisma = new PrismaClient()
 
 export async function getDoctorsHospitalsAndAppointments(doctorId) {
@@ -252,18 +253,30 @@ export async function createAppointment(date, doctorId, patientId, hospitalId) {
   return newAppointment
 }
 
-export async function createPrescription(name, dosage, instructions, doctorId, patientId, appointmentId) {
-    const newPrescription = await prisma.prescription.create({
-      data: {
-        name: name,
-        dosage: dosage,
-        instructions: instructions,
-        doctorId: doctorId,
-        patientId: patientId,
-        Appointment: {
-          connect: { id: appointmentId }
+export async function createPrescription(name, dosage, instructions, appointmentId) {
+  const appointment = await prisma.appointment.findUnique({
+    where: { id: appointmentId },
+    select: { 
+      doctorId: true,
+      patientId: true
+    }
+  });
+
+  const newPrescription = await prisma.prescription.create({
+    data: {
+      name: name,
+      dosage: dosage,
+      instructions: instructions,
+      doctorId: appointment.doctorId,
+      patientId: appointment.patientId,
+      Appointment: {
+        connect: {
+          id: appointmentId
         }
       }
-    })
-    return newPrescription
+    }
+  });
+
+  return newPrescription;
 }
+
