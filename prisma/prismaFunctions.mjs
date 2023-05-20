@@ -2,7 +2,7 @@
 // ESSENTIALS
 
 import { PrismaClient } from '@prisma/client'
-import Appointment from '../src/routes/appointment'
+import Appointment from '../src/routes/appointment.jsx'
 const prisma = new PrismaClient()
 
 export async function getDoctorsHospitalsAndAppointments(doctorId) {
