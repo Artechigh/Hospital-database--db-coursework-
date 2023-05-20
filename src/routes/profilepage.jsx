@@ -23,7 +23,7 @@ const ProfilePage = () => {
       // e.preventDefault();
       // console.log(e.target.id)
       // console.log(clickedId,e.target.name.value,e.target.dosage.value)
-      e.preventDefault();
+        e.preventDefault();
        axios.post("http://localhost:3000/data/newPrescription", {
         id: e.target.id,
         name: e.target.name.value,
@@ -174,7 +174,6 @@ const ProfilePage = () => {
                                 />
                                 <button
                                   className='px-4 py-2 border-solid border-2 border-slate-700 bg-slate-300 rounded-md hover:bg-slate-500'
-                                  onClick={handleClick}
                                   id={appointment?.id}
                                 >
                                   Добавить предписание
