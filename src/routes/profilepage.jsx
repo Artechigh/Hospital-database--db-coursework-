@@ -4,7 +4,7 @@ import axios from 'axios'
 
 const tempApp = {"Appointments":[{"date":"2023-05-10T10:00:00.000Z","diagnosis":"астигматизм","Hospital":{"name":"Первая городская больница"},"Doctor":{"User":{"name":"Ермолова Милана Антоновна"}},"Prescriptions":[{"id":1,"name":"очки","dosage":"постоянно","instructions":"","doctorId":2,"patientId":4,"appointmentId":4},{"id":2,"name":"ацидофилин","dosage":"3 раза в день 7 дней в неделю","instructions":"","doctorId":2,"patientId":4,"appointmentId":4}]}]}
 
-const tempHospApp = {"Hospitals":[{"name":"Первая городская больница"}],"Appointments":[{"date":"2023-05-18T10:00:00.000Z","diagnosis":"","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Соколов Денис Константинович"}},"Prescriptions":[]},{"date":"2023-05-10T10:00:00.000Z","diagnosis":"астигматизм","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Соболева Кира Никитична"}},"Prescriptions":[{"id":1,"name":"очки","dosage":"постоянно","instructions":"","doctorId":2,"patientId":4,"appointmentId":4},{"id":2,"name":"ацидофилин","dosage":"3 раза в день 7 дней в неделю","instructions":"","doctorId":2,"patientId":4,"appointmentId":4}]}]}
+const tempHospApp = {"Hospitals":[{"name":"Первая городская больница"}],"Appointments":[{"date":"2023-05-18T10:00:00.000Z", "id":"1","diagnosis":"","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Соколов Денис Константинович"}},"Prescriptions":[]},{"date":"2023-05-10T10:00:00.000Z" , "id":"2", "diagnosis":"астигматизм","Hospital":{"name":"Первая городская больница"},"Patient":{"User":{"name":"Соболева Кира Никитична"}},"Prescriptions":[{"id":1,"name":"очки","dosage":"постоянно","instructions":"","doctorId":2,"patientId":4,"appointmentId":4},{"id":2,"name":"ацидофилин","dosage":"3 раза в день 7 дней в неделю","instructions":"","doctorId":2,"patientId":4,"appointmentId":4}]}]}
 
 
 
@@ -15,10 +15,27 @@ const ProfilePage = () => {
     const [info, setInfo] = useState(null)
     const [sortedAppointments, setSortedAppointments] = useState([])
     const [oldAppointments, setOldAppointments] = useState([])
-    const [inputData, setInputData] = useState([])
     const [clickedId, setClickedId] = useState("")
 
-    const handleClick = e => console.log(e.target.id);
+    const handleClick = e => setClickedId(e.target.id);
+
+    const handleSubmit = (e) => {
+      // e.preventDefault();
+      // console.log(e.target.id)
+      // console.log(clickedId,e.target.name.value,e.target.dosage.value)
+      // e.preventDefault();
+       axios.post("http://localhost:3000/", {
+        id: e.target.id,
+        name: e.target.name.value,
+        dosage: e.target.name.value,
+        instructions: ""
+      })
+      .then((response) => {
+        console.log(response)
+        }).catch(function (response) {
+        console.log(response)
+      });
+  };
 
     useEffect(() => {
       if (JSON.parse(user)?.Patient) {
@@ -38,8 +55,8 @@ const ProfilePage = () => {
           setInfo(response.data);
         })
       }
-      // setInfo(tempApp)
-      // setIsDoctor("patient")
+      // setInfo(tempHospApp)
+      // setIsDoctor("doctor")
     }, [])
 
     useEffect(() => {
@@ -148,9 +165,12 @@ const ProfilePage = () => {
                                   <div className='text-sm'>{prescription.dosage}</div>
                                 </div>
                               ))}</div>
-                              <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center space-y-5 '>
-                                <input type='text' name='prescription' placeholder='Предписание' 
-                                  className='bg-slate-200 text-slate-700 border-b-2 border-slate-700 p-2 w-96'
+                              <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center space-y-5 ' id={appointment?.id}>
+                                <input type='text' name='name' placeholder='Название лекарства' 
+                                  className='bg-slate-200 text-slate-700 border-b-2 border-slate-700 p-2 w-full'
+                                />
+                                <input type='text' name='dosage' placeholder='Дозировка' 
+                                  className='bg-slate-200 text-slate-700 border-b-2 border-slate-700 p-2 w-full'
                                 />
                                 <button
                                   className='px-4 py-2 border-solid border-2 border-slate-700 bg-slate-300 rounded-md hover:bg-slate-500'
