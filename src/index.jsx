@@ -10,7 +10,7 @@ import NotFound from "./components/404.jsx";
 import SignIn from "./components/registerform.jsx";
 import DoctorProfile from "./routes/doctorprofile.jsx";
 import ProfilePage from "./routes/profilepage.jsx";
-import Rooot from "./routes/rooot";
+import Rooot from "./routes/rooot.jsx";
 // import {
 //     createBrowserRouter,
 //     RouterProvider,
