@@ -129,7 +129,7 @@ const MyCalendar = ({dId, hId}) => {
 
       
   return (
-    <div className='flex flex-row relative'>
+    <div className='flex flex-row items-center justify-center'>
       <div className='flex flex-col justify-start items-start'>
         <div className="w-72 font-medium mr-10">
         <div
@@ -226,9 +226,9 @@ const MyCalendar = ({dId, hId}) => {
 
 
       </div>
-      <div className='w-[49vw] h-[45vh] absolute top-0 left-0'></div>
+      {/* <div className='w-[49vw] h-[45vh] absolute top-0 left-0'></div> */}
               
-        <div className='max-w-[55vw] max-h-[60vh] overflow-clip absolute top-10 left-40'>
+        <div className='max-w-[55vw] max-h-[60vh] overflow-clip'>
         <DayPilotCalendar 
             viewType={`Week`} 
             events={mainEvents}
