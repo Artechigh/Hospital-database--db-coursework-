@@ -28,8 +28,7 @@ const ProfilePage = () => {
        axios.post("http://localhost:3000/data/newPrescription", {
         id: e.target.id,
         name: e.target.name.value,
-        dosage: e.target.name.value,
-        instructions: ""
+        dosage: e.target.dosage.value,
       })
       .then((response) => {
         console.log(response)
