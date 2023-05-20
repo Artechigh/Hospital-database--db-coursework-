@@ -228,9 +228,9 @@ const MyCalendar = ({dId, hId}) => {
       </div>
               
         <div className='max-w-[50vw] max-h-[45vh] overflow-clip relative'>
-            <div className='w-[49vw] h-[45vh] absolute  z-10 top-0 left-0'></div>
+            {/* <div className='w-[49vw] h-[45vh] absolute  z-10 top-0 left-0'></div> */}
         <DayPilotCalendar 
-            viewType="WorkWeek" 
+            viewType={`Days(${7})`} 
             events={mainEvents}
             durationBarVisible="False"
             style={{ pointerEvents: 'none' }}
