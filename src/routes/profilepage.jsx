@@ -169,10 +169,10 @@ const ProfilePage = () => {
                                 ))}</div>
                                 <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center space-y-5 ' id={appointment?.id}>
                                   <input type='text' name='name' placeholder='Название лекарства' 
-                                    className='bg-slate-200 text-slate-700 border-b-2 border-slate-700 p-2'
+                                    className='bg-slate-200 text-slate-700 border-b-2 border-slate-700 p-2 max-w-[12vw]'
                                   />
                                   <input type='text' name='dosage' placeholder='Дозировка' 
-                                    className='bg-slate-200 text-slate-700 border-b-2 border-slate-700 p-2'
+                                    className='bg-slate-200 text-slate-700 border-b-2 border-slate-700 p-2 max-w-sm'
                                   />
                                   <button
                                     className='px-2 py-1 border-solid border-2 border-slate-700 bg-slate-300 rounded-md hover:bg-slate-500 text-sm'
