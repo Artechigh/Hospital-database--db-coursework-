@@ -155,7 +155,7 @@ const ProfilePage = () => {
                   </div>
                 </div>
 
-                <div className='flex flex-col pl-5'>
+                <div className='flex flex-col'>
                   <div className='text-lg font-medium pt-8 pb-2'>Список прошедших записей:</div>
                   <div className='flex flex-row justify-start space-x-2 max-h-[100vh] overflow-scroll max-w-md overflow-y-hidden relative'>
                         {oldAppointments?.map(appointment => (
