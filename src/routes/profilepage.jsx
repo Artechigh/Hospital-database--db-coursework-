@@ -82,7 +82,7 @@ const ProfilePage = () => {
 
   return (
     <div className='flex flex-row items-start justify-center'>
-        <div className='flex flex-col justify-center items-start space-y-4 pr-16'>
+        <div className='flex flex-col justify-center items-start space-y-4 pr-16 pt-8'>
             <div className='font-bold text-2xl pb-3'>
                 {JSON.parse(user)?.name}
             </div>
