@@ -742,6 +742,14 @@ video {
   max-height: 8rem;
 }
 
+.max-h-\[\] {
+  max-height: ;
+}
+
+.max-h-\[420px\] {
+  max-height: 420px;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
