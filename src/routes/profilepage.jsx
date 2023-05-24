@@ -144,15 +144,15 @@ const ProfilePage = () => {
                   <div className='text-lg font-medium pt-8 pb-2'>Список прошедших записей:</div>
                   <div className='flex flex-row justify-start space-x-2 max-h-96 overflow-scroll max-w-md overflow-y-hidden relative'>
                         {oldAppointments?.map(appointment => (
-                          <div className='py-3 px-5 border-slate-800 border-2 rounded-md min-w-[10vw] relative'>
+                          <div className='py-3 px-5 border-slate-800 border-2 rounded-md min-w-[40vw] relative'>
                             <div className='font-medium pb-2'>{appointment?.Patient?.User?.name}</div>
                             <div className='font-light'>{appointment?.date?.substring(0,10)} в {appointment?.date.substring(11,16)}</div>
                             <div className='font-light text-sm pb-2'>{appointment?.Hospital?.name}</div>
-                            <div className={`bg-slate-800 h-0.5 w-80 left-0 absolute
+                            {/* <div className={`bg-slate-800 h-0.5 w-80 left-0 absolute
                               ${
                                 appointment?.Prescriptions?.length == 0 ? "hidden" : ""
                               }
-                              `}></div>
+                              `}></div> */}
                             <div className='max-h-32 overflow-scroll overflow-x-hidden'>
                               <div className={`text-md font-semibold pt-3
                               ${
