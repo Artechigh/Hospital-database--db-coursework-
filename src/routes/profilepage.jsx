@@ -107,7 +107,7 @@ const ProfilePage = () => {
               </div> : <></>}
         </div>
         {isDoctor === "doctor" ?
-              <div className='flex flex-row '>
+              <div className='flex flex-col '>
                 <div className='flex flex-col'>
                   <div className='text-lg font-medium pt-8 pb-2'>Список ближайших записей:</div>
                   <div className='flex flex-row justify-start space-x-2 max-h-[100vh] overflow-scroll max-w-md overflow-y-hidden relative'>
