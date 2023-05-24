@@ -61,8 +61,8 @@ const ProfilePage = () => {
     }, [])
 
     useEffect(() => {
-      const sorted = info?.Appointments?.sort(SortArrayH).sort(SortArrayD).filter(item => +item.date.substring(8,10) >= 20)
-      const old = info?.Appointments?.sort(SortArrayH).sort(SortArrayD).filter(item => +item.date.substring(8,10) < 20)
+      const sorted = info?.Appointments?.sort(SortArrayH).sort(SortArrayD).filter(item => +item.date.substring(8,10) >= 25)
+      const old = info?.Appointments?.sort(SortArrayH).sort(SortArrayD).filter(item => +item.date.substring(8,10) < 25)
       setOldAppointments(old)
       setSortedAppointments(sorted);
     }, [info])
