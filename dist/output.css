@@ -770,6 +770,10 @@ video {
   width: 10rem;
 }
 
+.min-w-\[10vw\] {
+  min-width: 10vw;
+}
+
 .max-w-3xl {
   max-width: 48rem;
 }
