@@ -738,6 +738,10 @@ video {
   max-height: 3rem;
 }
 
+.max-h-32 {
+  max-height: 8rem;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
