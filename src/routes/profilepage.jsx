@@ -153,7 +153,7 @@ const ProfilePage = () => {
                                 appointment?.Prescriptions?.length == 0 ? "hidden" : ""
                               }
                               `}></div> */}
-                            <div className='max-h-32 overflow-scroll overflow-x-hidden'>
+                            <div className='max-h-36 overflow-scroll overflow-x-hidden'>
                               <div className={`text-md font-semibold pt-3
                               ${
                                 appointment?.Prescriptions?.length == 0 ? "hidden" : ""
