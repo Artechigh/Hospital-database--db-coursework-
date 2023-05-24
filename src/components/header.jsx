@@ -13,7 +13,7 @@ const Header = () => {
 
 
   return (
-    <div className='bg-white/30 w-screen h-[50px] backdrop-blur-sm flex flex-row items-center justify-between fixed top-0 left-0 z-20 p-5'>
+    <div className='bg-white/30 w-screen h-[50px] backdrop-blur-sm flex flex-row items-center justify-between fixed top-0 left-0 z-40 p-5'>
         <Link to={"/"} className='font-semibold'>
             MyHospital
         </Link>
@@ -25,7 +25,7 @@ const Header = () => {
         {
           (sessionStorage.getItem('user')) 
           ? 
-          <div className='flex flex-row space-x-5'>
+          <div className='flex flex-row space-x-5 pr-3'>
             <Link to={"/myProfile"} className='hover:underline hover:text-slate-900'>
               Профиль
             </Link>
