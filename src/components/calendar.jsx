@@ -62,11 +62,11 @@ const MyCalendar = ({dId, hId}) => {
 
 
     const weeklist = [
-      {n: 15, text:"Понедельник"}, 
-      {n: 16, text:"Вторник"}, 
-      {n: 17, text:"Среда"}, 
-      {n: 18, text:"Четверг"}, 
-      {n: 19, text:"Пятница"}
+      {n: 22, text:"Понедельник"}, 
+      {n: 23, text:"Вторник"}, 
+      {n: 24, text:"Среда"}, 
+      {n: 25, text:"Четверг"}, 
+      {n: 26, text:"Пятница"}
     ]
 
     const times = [
