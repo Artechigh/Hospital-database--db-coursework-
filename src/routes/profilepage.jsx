@@ -175,7 +175,7 @@ const ProfilePage = () => {
                                     className='bg-slate-200 text-slate-700 border-b-2 border-slate-700 p-2 w-full'
                                   />
                                   <button
-                                    className='px-4 py-2 border-solid border-2 border-slate-700 bg-slate-300 rounded-md hover:bg-slate-500'
+                                    className='px-2 py-1 border-solid border-2 border-slate-700 bg-slate-300 rounded-md hover:bg-slate-500 text-sm'
                                     id={appointment?.id}
                                   >
                                     Добавить предписание
