@@ -81,7 +81,7 @@ const ProfilePage = () => {
     
 
   return (
-    <div>
+    <div className='flex flex-row items-start justify-center'>
         <div className='flex flex-col justify-center items-start space-y-4 pt-16'>
             <div className='font-bold text-2xl pb-3'>
                 {JSON.parse(user)?.name}
@@ -95,17 +95,18 @@ const ProfilePage = () => {
             <div className='text-lg'>
                 Пол: {JSON.parse(user)?.gender}
             </div>
+            {isDoctor === "doctor" ? <div>
+              <div className='text-lg font-medium pt-8 pb-2'>Больницы, в которых вы работаете:</div>
+                <div className='flex flex-col justify-start'>
+                  {info?.Hospitals?.map(hospital => (
+                    <div className='font-light'>
+                      {hospital?.name}
+                    </div>
+                  ))}
+                </div>
+              </div> : <></>}
         </div>
         {isDoctor === "doctor" ?
-            <div>
-              <div className='text-lg font-medium pt-8 pb-2'>Больницы, в которых вы работаете:</div>
-              <div className='flex flex-col justify-start'>
-                {info?.Hospitals?.map(hospital => (
-                  <div className='font-light'>
-                    {hospital?.name}
-                  </div>
-                ))}
-              </div>
               <div className='flex flex-row '>
                 <div className='flex flex-col'>
                   <div className='text-lg font-medium pt-8 pb-2'>Список ближайших записей:</div>
@@ -138,7 +139,7 @@ const ProfilePage = () => {
                                     className='bg-slate-200 text-slate-700 border-b-2 border-slate-700 p-2 max-w-[12vw]'
                                   />
                                   <input type='text' name='dosage' placeholder='Дозировка' 
-                                    className='bg-slate-200 text-slate-700 border-b-2 border-slate-700 p-2 pb-1 max-w-[12vw]'
+                                    className='bg-slate-200 text-slate-700 border-b-2 border-slate-700 p-2 max-w-[12vw]'
                                   />
                                   <button
                                     className='px-2 py-1 border-solid border-2 border-slate-700 bg-slate-300 rounded-md hover:bg-slate-500 text-sm'
@@ -188,8 +189,7 @@ const ProfilePage = () => {
                       }
                   </div>
                 </div>
-              </div>
-            </div> : <></>
+              </div> : <></>
         }
         {isDoctor === "patient" ?
             <div className='flex flex-row '>
