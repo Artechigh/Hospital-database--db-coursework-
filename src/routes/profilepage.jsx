@@ -153,33 +153,35 @@ const ProfilePage = () => {
                                 appointment?.Prescriptions?.length == 0 ? "hidden" : ""
                               }
                               `}></div>
-                            <div>
+                            <div className='max-h-12 overflow-scroll overflow-y-hidden'>
                               <div className={`text-md font-semibold pt-3
                               ${
                                 appointment?.Prescriptions?.length == 0 ? "hidden" : ""
                               }
                               `}> Предписания </div>
-                              <div>{appointment.Prescriptions.map(prescription => (
-                                <div className='flex flex-col p-2'>
-                                  <div className='text-sm font-semibold'>{prescription.name}</div>
-                                  <div className='text-sm'>{prescription.instructions}</div>
-                                  <div className='text-sm'>{prescription.dosage}</div>
-                                </div>
-                              ))}</div>
-                              <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center space-y-5 ' id={appointment?.id}>
-                                <input type='text' name='name' placeholder='Название лекарства' 
-                                  className='bg-slate-200 text-slate-700 border-b-2 border-slate-700 p-2 w-full'
-                                />
-                                <input type='text' name='dosage' placeholder='Дозировка' 
-                                  className='bg-slate-200 text-slate-700 border-b-2 border-slate-700 p-2 w-full'
-                                />
-                                <button
-                                  className='px-4 py-2 border-solid border-2 border-slate-700 bg-slate-300 rounded-md hover:bg-slate-500'
-                                  id={appointment?.id}
-                                >
-                                  Добавить предписание
-                                </button>
-                              </form>
+                              <div>
+                                <div>{appointment.Prescriptions.map(prescription => (
+                                  <div className='flex flex-col p-2'>
+                                    <div className='text-sm font-semibold'>{prescription.name}</div>
+                                    <div className='text-sm'>{prescription.instructions}</div>
+                                    <div className='text-sm'>{prescription.dosage}</div>
+                                  </div>
+                                ))}</div>
+                                <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center space-y-5 ' id={appointment?.id}>
+                                  <input type='text' name='name' placeholder='Название лекарства' 
+                                    className='bg-slate-200 text-slate-700 border-b-2 border-slate-700 p-2 w-full'
+                                  />
+                                  <input type='text' name='dosage' placeholder='Дозировка' 
+                                    className='bg-slate-200 text-slate-700 border-b-2 border-slate-700 p-2 w-full'
+                                  />
+                                  <button
+                                    className='px-4 py-2 border-solid border-2 border-slate-700 bg-slate-300 rounded-md hover:bg-slate-500'
+                                    id={appointment?.id}
+                                  >
+                                    Добавить предписание
+                                  </button>
+                                </form>
+                              </div>
                             </div>
                           </div>
                         ))
