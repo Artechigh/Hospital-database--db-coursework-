@@ -142,7 +142,7 @@ const ProfilePage = () => {
 
                 <div className='flex flex-col pl-5'>
                   <div className='text-lg font-medium pt-8 pb-2'>Список прошедших записей:</div>
-                  <div className='flex flex-row justify-start space-x-2 max-h-96 overflow-scroll max-w-xl overflow-y-hidden relative'>
+                  <div className='flex flex-row justify-start space-x-2 max-h-96 overflow-scroll max-w-md overflow-y-hidden relative'>
                         {oldAppointments?.map(appointment => (
                           <div className='py-3 px-5 border-slate-800 border-2 rounded-md w-40'>
                             <div className='font-medium pb-2'>{appointment?.Patient?.User?.name}</div>
