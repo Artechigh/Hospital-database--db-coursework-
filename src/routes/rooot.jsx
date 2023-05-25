@@ -7,7 +7,7 @@ const Rooot = () => {
       style={{'background-image': `url(${MyImage}`}}
       className={`flex flex-col justify-center items-center text-center bg-cover bg-left-top relative text-slate-100 h-screen`}
     > 
-    <div className='absolute w-screen h-screen backdrop-blur-sm z-10'></div>
+    <div className='absolute w-screen h-screen backdrop-blur-md z-10'></div>
         <div 
         // style={{'background-image': `url(${MyImage}`}}
         // className='font-bold text-7xl z-20 text-black text-opacity-5 bg-cover bg-clip-text bg-left-top'
