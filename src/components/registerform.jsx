@@ -30,6 +30,7 @@ const SignIn = () => {
 
   return (
     <div className='flex flex-col justify-center items-center'>
+      <div className='font-bold text-xl pb-16'> Введите данные для регистрации </div>
       <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center space-y-5'>
                 <input type='text' name='username' placeholder='Имя'
                   className='bg-slate-200 text-slate-700 border-b-2 border-slate-700 p-2 w-96'
@@ -45,7 +46,7 @@ const SignIn = () => {
                 />
                  <div className='text-green-950 p-1'>{responce}</div>
                 {error ? 
-                  <div className='text-green-950 p-1'>
+                  <div className='text-red-950 p-1'>
                     Произошла ошибка на стороне сервера. Пожалуйста, попробуйте еще раз.
                   </div> 
                   : <div></div>}
