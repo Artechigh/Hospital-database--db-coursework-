@@ -25,7 +25,7 @@ const Header = () => {
         {
           (sessionStorage.getItem('user')) 
           ? 
-          <div className='flex flex-row space-x-5 pr-3'>
+          <div className='flex flex-row space-x-5 pr-5'>
             <Link to={"/myProfile"} className='hover:underline hover:text-slate-900'>
               Профиль
             </Link>
@@ -34,7 +34,7 @@ const Header = () => {
             </button>
           </div> 
           : 
-          <div className='flex flex-row space-x-5'>
+          <div className='flex flex-row space-x-5 pr-5'>
             <Link to={"/register"} className='hover:underline hover:text-slate-900'>
               Регистрация
             </Link>
